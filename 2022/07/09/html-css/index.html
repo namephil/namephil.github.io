@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="UTF-8">
+  <meta 
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+  <meta 
+    http-equiv="X-UA-Compatible" 
+    content="ie=edge">
+  <meta 
+    name="theme-color" 
+    content="#fff" 
+    id="theme-color">
+  <meta 
+    name="description" 
+    content="Phil">
+  <link 
+    rel="icon" 
+    href="/">
+  <title>html-css</title>
+  
+    
+      <meta 
+        property="og:title" 
+        content="html-css">
+    
+    
+      <meta 
+        property="og:url" 
+        content="http://example.com/2022/07/09/html-css/index.html">
+    
+    
+      <meta 
+        property="og:img" 
+        content="https://img.songhn.com/img/Y67gdd.png">
+    
+    
+    
+      <meta 
+        property="og:type" 
+        content="article">
+      <meta 
+        property="og:article:published_time" 
+        content="2022-07-09">
+      <meta 
+        property="og:article:modified_time" 
+        content="2022-07-09">
+      <meta 
+        property="og:article:author" 
+        content="theme-kaze">
+      
+        
+      
+    
+  
+  
+  <link rel="preload" href="//at.alicdn.com/t/font_1946621_i1kgafibvw.css" as="style" >
+  <link rel="preload" href="//at.alicdn.com/t/font_1952792_89b4ac4k4up.css" as="style" >
+  <link rel="preload" href="/css/main.css" as="style" >
+  
+  <link rel="modulepreload" href="//instant.page/5.1.0">
+  
+  <link rel="stylesheet" href="/css/main.css">
+  
+  <link rel="stylesheet" href="//at.alicdn.com/t/font_1946621_i1kgafibvw.css">
+  
+  <link rel="stylesheet" href="//at.alicdn.com/t/font_1952792_89b4ac4k4up.css">
+  
+  
+  
+    <link rel="stylesheet" href="/js/lib/lightbox/baguetteBox.min.css">
+  
+  <script>
+    function loadScript(url, cb) {
+      var script = document.createElement('script');
+      script.src = url;
+      if (cb) script.onload = cb;
+      script.async = true;
+      document.body.appendChild(script);
+    }
+    function loadCSS(href, data, attr) {
+      var sheet = document.createElement('link');
+      sheet.ref = 'stylesheet';
+      sheet.href = href;
+      sheet.dataset[data] = attr;
+      document.head.appendChild(sheet);
+    }
+    function changeCSS(cssFile, data, attr) {
+      var oldlink = document.querySelector(data);
+      var newlink = document.createElement("link");
+      newlink.setAttribute("rel", "stylesheet");
+      newlink.setAttribute("href", cssFile);
+      newlink.dataset.prism = attr;
+      document.head.replaceChild(newlink, oldlink);
+    }
+  </script>
+  
+    
+  
+  <script>
+    // control reverse button
+    var reverseDarkList = {
+      dark: 'light',
+      light: 'dark'
+    };
+    var themeColor = {
+      dark: '#1c1c1e',
+      light: '#fff'
+    }
+    // get the data of css prefers-color-scheme
+    var getCssMediaQuery = function() {
+      return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    };
+    // reverse current darkmode setting function
+    var reverseDarkModeSetting = function() {
+      var setting = localStorage.getItem('user-color-scheme');
+      if(reverseDarkList[setting]) {
+        setting = reverseDarkList[setting];
+      } else if(setting === null) {
+        setting = reverseDarkList[getCssMediaQuery()];
+      } else {
+        return;
+      }
+      localStorage.setItem('user-color-scheme', setting);
+      return setting;
+    };
+    // apply current darkmode setting
+  </script>
+  
+    <script>
+      var setDarkmode = function(mode) {
+      var setting = mode || localStorage.getItem('user-color-scheme');
+      if(setting === getCssMediaQuery()) {
+        document.documentElement.removeAttribute('data-user-color-scheme');
+        localStorage.removeItem('user-color-scheme');
+        document.getElementById('theme-color').content = themeColor[setting];
+        document.getElementById('theme-color').dataset.mode = setting;
+      } else if(reverseDarkList[setting]) {
+        document.documentElement.setAttribute('data-user-color-scheme', setting);
+        document.getElementById('theme-color').content = themeColor[setting];
+        document.getElementById('theme-color').dataset.mode = setting;
+      } else {
+        document.documentElement.removeAttribute('data-user-color-scheme');
+        localStorage.removeItem('user-color-scheme');
+        document.getElementById('theme-color').content = themeColor[getCssMediaQuery()];
+        document.getElementById('theme-color').dataset.mode = getCssMediaQuery();
+      }
+    };
+    setDarkmode();
+    </script>
+  
+  
+  
+    <link rel="preload" href="/js/lib/lightbox/baguetteBox.min.js" as="script">
+    <link rel="preload" href="/js/lib/lightbox/baguetteBox.min.css" as="style" >
+  
+  
+    <link rel="preload" href="/js/lib/lozad.min.js" as="script">
+  
+  
+  
+  
+  
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+  <body>
+    <div class="wrapper">
+       
+      <nav class="navbar">
+  <div class="navbar-logo">
+    <a class="navbar-logo-main" href="/">
+      
+      <span class="navbar-logo-dsc">Theme Kaze</span>
+      </a>
+  </div>
+  <div class="navbar-menu">
+    
+      <a 
+        href="/" 
+        class="navbar-menu-item">
+        
+          Home
+        
+      </a>
+    
+      <a 
+        href="/archives" 
+        class="navbar-menu-item">
+        
+          Archive
+        
+      </a>
+    
+      <a 
+        href="/tags" 
+        class="navbar-menu-item">
+        
+          Tags
+        
+      </a>
+    
+      <a 
+        href="/categories" 
+        class="navbar-menu-item">
+        
+          Categories
+        
+      </a>
+    
+      <a 
+        href="/about" 
+        class="navbar-menu-item">
+        
+          About
+        
+      </a>
+    
+      <a 
+        href="/links" 
+        class="navbar-menu-item">
+        
+          Friends
+        
+      </a>
+    
+    <button 
+      class="navbar-menu-item darknavbar navbar-menu-btn" 
+      aria-label="Toggle dark mode"
+      id="dark">
+      <i class="iconfont icon-weather"></i>
+    </button>
+    <button 
+      class="navbar-menu-item searchnavbar navbar-menu-btn" 
+      aria-label="Toggle search"
+      id="search">
+      <!-- <i 
+        class="iconfont icon-search" 
+        style="font-size: 1.2rem; font-weight: 400;">
+      </i> -->
+      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img"
+        class="iconify iconify--ion" width="28" height="28" preserveAspectRatio="xMidYMid meet" viewBox="0 0 512 512">
+        <path fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="28"
+          d="M256 80a176 176 0 1 0 176 176A176 176 0 0 0 256 80Z"></path>
+        <path fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="28"
+          d="M232 160a72 72 0 1 0 72 72a72 72 0 0 0-72-72Z"></path>
+        <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="28"
+          d="M283.64 283.64L336 336"></path>
+      </svg>
+    </button>
+  </div>
+</nav> 
+      
+      <div 
+        id="local-search" 
+        style="display: none">
+        <input
+          class="navbar-menu-item"
+          id="search-input"
+          placeholder="请输入搜索内容..." />
+        <div id="search-content"></div>
+      </div>
+      
+      <div class="section-wrap">
+        <div class="container">
+          <div class="columns">
+            <aside class="left-column">
+              
+              <div class="card card-author">
+                
+  <img 
+    src="https://img.songhn.com/img/Y67gdd.png" 
+    class="author-img"
+    width="88"
+    height="88"
+    alt="author avatar">
+
+<p class="author-name">theme-kaze</p>
+<p class="author-description">designed by theme-kaze</p>
+<div class="author-message">
+  <a 
+    class="author-posts-count" 
+    href="/archives">
+    <span>4</span>
+    <span>Posts</span>
+  </a>
+  <a 
+    class="author-categories-count" 
+    href="/categories">
+    <span>3</span>
+    <span>Categories</span>
+  </a>
+  <a 
+    class="author-tags-count" 
+    href="/tags">
+    <span>0</span>
+    <span>Tags</span>
+  </a>
+</div>
+
+              </div>
+               <div class="sticky-tablet">
+  
+  
+    <article class="display-when-two-columns spacer">
+      <div class="card card-content toc-card">
+        <div class="toc-header">
+  <i 
+    class="iconfont icon-menu" 
+    style="padding-right: 2px;">
+  </i>TOC
+</div>
+<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-flex%E5%B8%83%E5%B1%80"><span class="toc-text">1.flex布局</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E4%B8%89%E6%A0%8F%E5%B8%83%E5%B1%80%EF%BC%88%E4%B8%A4%E8%BE%B9%E5%9B%BA%E5%AE%9A%EF%BC%8C%E4%B8%AD%E9%97%B4%E8%87%AA%E9%80%82%E5%BA%94%EF%BC%89"><span class="toc-text">2.三栏布局（两边固定，中间自适应）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Grid%E5%B8%83%E5%B1%80"><span class="toc-text">3.Grid布局</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E5%8F%8C%E9%A3%9E%E7%BF%BC-x2F-%E5%9C%A3%E6%9D%AF%E5%B8%83%E5%B1%80"><span class="toc-text">4.双飞翼&#x2F;圣杯布局</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-px-em-rem-vw-vh%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-text">5.px em rem vw vh的区别</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#rem%E5%AE%9E%E7%8E%B0%E9%A1%B5%E9%9D%A2%E7%AD%89%E6%AF%94%E4%BE%8B%E6%94%BE%E5%A4%A7-x2F-%E7%BC%A9%E5%B0%8F"><span class="toc-text">rem实现页面等比例放大&#x2F;缩小</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%93%8D%E5%BA%94%E5%BC%8F%E5%B8%83%E5%B1%80"><span class="toc-text">响应式布局</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-position"><span class="toc-text">6.position</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-%E6%B0%B4%E5%B9%B3-x2F-%E5%9E%82%E7%9B%B4%E5%B1%85%E4%B8%AD"><span class="toc-text">7.水平&#x2F;垂直居中</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B0%B4%E5%B9%B3%E5%B1%85%E4%B8%AD"><span class="toc-text">水平居中</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9E%82%E7%9B%B4%E5%B1%85%E4%B8%AD"><span class="toc-text">垂直居中</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-css%E5%9B%BE%E5%BD%A2%E7%BB%98%E5%88%B6"><span class="toc-text">8.css图形绘制</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%98%E5%88%B6%E4%B8%89%E8%A7%92%E5%BD%A2"><span class="toc-text">绘制三角形</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%98%E5%88%B6%E4%BA%94%E8%A7%92%E6%98%9F"><span class="toc-text">绘制五角星</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-css%E5%8A%A8%E7%94%BB"><span class="toc-text">9.css动画</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%89%8B%E5%86%99%E5%8A%A8%E7%94%BB%E7%9A%84%E6%9C%80%E5%B0%8F%E6%97%B6%E9%97%B4%E9%97%B4%E9%9A%94"><span class="toc-text">手写动画的最小时间间隔</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10-css%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96"><span class="toc-text">10.css性能优化</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#GUP%E5%8A%A0%E9%80%9F"><span class="toc-text">GUP加速</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#11-%E9%9A%90%E8%97%8F%E5%85%83%E7%B4%A0%E7%9A%84%E6%96%B9%E6%B3%95"><span class="toc-text">11.隐藏元素的方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%881%EF%BC%89opacity-0"><span class="toc-text">（1）opacity:0</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%882%EF%BC%89visibility-hidden"><span class="toc-text">（2）visibility: hidden</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%883%EF%BC%89display%EF%BC%9Anone"><span class="toc-text">（3）display：none</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%884%EF%BC%89overflow%EF%BC%9A-hidden"><span class="toc-text">（4）overflow： hidden</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%885%EF%BC%89transform%EF%BC%9A-scal-0"><span class="toc-text">（5）transform： scal(0)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%886%EF%BC%89z-index"><span class="toc-text">（6）z-index</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#12-background%E5%B1%9E%E6%80%A7"><span class="toc-text">12.background属性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#12-css%E6%A0%B7%E5%BC%8F%E9%9A%94%E7%A6%BB"><span class="toc-text">12. css样式隔离</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#13-BFC"><span class="toc-text">13.BFC</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%83%E5%B1%80%E5%8E%9F%E7%90%86"><span class="toc-text">布局原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E5%BC%80%E5%90%AFBFC"><span class="toc-text">如何开启BFC</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#BFC%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="toc-text">BFC使用场景</span></a></li></ol></li></ol>
+      </div>
+    </article>
+  
+  
+  <article class="card card-content categories-widget">
+    <div class="categories-card">
+  <div class="categories-header">
+    <i 
+      class="iconfont icon-fenlei" 
+      style="padding-right: 2px;">
+    </i>Categories
+  </div>
+  <div class="categories-list">
+    
+      <a href="/categories/%E5%89%8D%E7%AB%AF%EF%BC%8C%E7%AE%97%E6%B3%95/">
+        <div class="categories-list-item">
+          前端，算法
+          <span class="categories-list-item-badge">1</span>
+        </div>
+      </a>
+    
+      <a href="/categories/%E5%89%8D%E7%AB%AF-HTML-CSS/">
+        <div class="categories-list-item">
+          前端-HTML-CSS
+          <span class="categories-list-item-badge">1</span>
+        </div>
+      </a>
+    
+      <a href="/categories/%E5%89%8D%E7%AB%AF-javascript/">
+        <div class="categories-list-item">
+          前端-javascript
+          <span class="categories-list-item-badge">1</span>
+        </div>
+      </a>
+    
+  </div>
+</div>
+  </article>
+  
+  <article class="card card-content tags-widget">
+    <div class="tags-card">
+  <div class="tags-header">
+    <i 
+      class="iconfont icon-biaoqian" 
+      style="padding-right: 2px;">
+    </i>hot tags
+  </div>
+  <div class="tags-list">
+    
+  </div>
+</div>
+  </article>
+  
+  
+</div>
+            </aside>
+            <main class="main-column">
+              
+<article class="card card-content">
+  <header>
+    <h1 class="post-title">
+      html-css
+    </h1>
+  </header>
+  <div class="post-meta post-show-meta">
+    <time datetime="2022-07-09T02:53:11.000Z">
+      <i 
+        class="iconfont icon-calendar" 
+        style="margin-right: 2px;">
+      </i>
+      <span>2022-07-09</span>
+    </time>
+    
+      <span class="dot"></span>
+      
+        <a 
+          href="/categories/%E5%89%8D%E7%AB%AF-HTML-CSS/" 
+          class="post-meta-link">
+          -[前端,HTML+CSS]
+        </a>
+      
+    
+    
+      <span class="dot"></span>
+      <span>1.8k words</span>
+    
+  </div>
+  
+  </header>
+  <div 
+    id="section" 
+    class="post-content">
+    <h2 id="1-flex布局"><a href="#1-flex布局" class="headerlink" title="1.flex布局"></a>1.flex布局</h2><blockquote>
+<p>学习flex之后使用flex布局绘制色子</p>
+</blockquote>
+<p>（1）容器属性</p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>属性值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>flex-direction</td>
+<td>row &#x2F; row-reverse &#x2F; column &#x2F; column-reverse  决定主轴的方向</td>
+</tr>
+<tr>
+<td>flex-wrap</td>
+<td>nowrap &#x2F; wrap &#x2F; wrap-reverse 如何换行</td>
+</tr>
+<tr>
+<td>flex-flow</td>
+<td>flex-direction + flex-wrap</td>
+</tr>
+<tr>
+<td>justify-content</td>
+<td>flex-start &#x2F; flex-end &#x2F; center &#x2F; space-between &#x2F; space-around 水平对齐方式</td>
+</tr>
+<tr>
+<td>align-items</td>
+<td>flex-start &#x2F; flex-end &#x2F; center &#x2F; baseline &#x2F; stretch 垂直对齐方式</td>
+</tr>
+<tr>
+<td>align-content</td>
+<td>flex-start &#x2F; flex-end &#x2F; center &#x2F; space-between &#x2F; space-around &#x2F; stretch 多根轴线对齐方式，若只有一根轴线，该属性不起作用</td>
+</tr>
+</tbody></table>
+<p>（2）项目属性</p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>属性值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>order</td>
+<td>项目的排列顺序。数值越小，排列越靠前，默认为0</td>
+</tr>
+<tr>
+<td>flex-grow</td>
+<td>定义项目的放大比例，默认为0，<strong>即如果存在剩余空间，也不放大</strong> 。1，则它们将等分剩余空间（如果有的话）。如果一个项目的flex-grow属性为2，其他项目都为1，则前者占据的剩余空间将比其他项多一倍。</td>
+</tr>
+<tr>
+<td>flex-shrink</td>
+<td>项目的缩小比例，默认为1，即如果空间不足，该项目将缩小。如果所有项目的flex-shrink属性都为1，当空间不足时，都将等比例缩小。如果一个项目的flex-shrink属性为0，其他项目都为1，则空间不足时，前者不缩小。</td>
+</tr>
+<tr>
+<td>flex-basis</td>
+<td>在分配多余空间之前，项目占据的主轴空间（main size）。浏览器根据这个属性，计算主轴是否有多余空间。它的默认值为auto，即项目的本来大小</td>
+</tr>
+<tr>
+<td><strong>flex</strong></td>
+<td>flex-grow, flex-shrink 和 flex-basis的简写，默认值为0 1 auto。两个快捷值auto (1 1 auto) 和 none (0 0 auto）</td>
+</tr>
+<tr>
+<td>align-self</td>
+<td>单个项目有与其他项目不一样的对齐方式，可覆盖align-items属性。默认值为auto，表示继承父元素的align-items属性，如果没有父元素，则等同于stretch</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>详情见：<a target="_blank" rel="noopener" href="https://ruanyifeng.com/blog/2015/07/flex-grammar.html">https://ruanyifeng.com/blog/2015/07/flex-grammar.html</a></p>
+</blockquote>
+<h2 id="2-三栏布局（两边固定，中间自适应）"><a href="#2-三栏布局（两边固定，中间自适应）" class="headerlink" title="2.三栏布局（两边固定，中间自适应）"></a>2.三栏布局（两边固定，中间自适应）</h2><pre class="highlight"><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;left&quot;</span>&gt;</span>左边<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;right&quot;</span>&gt;</span>右边<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;middle&quot;</span>&gt;</span>中间<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre>
+<p>（1）float + margin</p>
+<pre class="highlight"><span class="line"><span class="selector-class">.middle</span> &#123;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">100%</span>;</span><br><span class="line">    <span class="attribute">margin</span>: <span class="number">0px</span> 右的width <span class="number">0px</span> 左的width;</span><br><span class="line">    <span class="attribute">background-color</span>: tomato;</span><br><span class="line">  &#125;</span><br></pre>
+<p>(2) float + calc</p>
+<pre class="highlight"><span class="line"><span class="selector-class">.left</span> &#123;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">300px</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">100%</span>;</span><br><span class="line">    <span class="attribute">background-color</span>: pink;</span><br><span class="line">    <span class="attribute">float</span>: left;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="selector-class">.right</span> &#123;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">200px</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">100%</span>;</span><br><span class="line">    <span class="attribute">float</span>: left;</span><br><span class="line">    <span class="attribute">background-color</span>: skyblue;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="selector-class">.middle</span> &#123;</span><br><span class="line">    <span class="attribute">width</span>: <span class="built_in">calc</span>(<span class="number">100%</span> - <span class="number">300px</span> - <span class="number">200px</span>);</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">100%</span>;</span><br><span class="line">    <span class="attribute">float</span>: left;</span><br><span class="line">    <span class="attribute">background-color</span>: tomato;</span><br><span class="line">  &#125;</span><br></pre>
+<p>(3) flex</p>
+<pre class="highlight"><span class="line"><span class="selector-tag">body</span> &#123;</span><br><span class="line">	<span class="attribute">display</span>: flex;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.middle</span> &#123;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">100%</span>;</span><br><span class="line">    <span class="attribute">background-color</span>: tomato;</span><br><span class="line">    <span class="attribute">flex-grow</span>: <span class="number">1</span>;</span><br><span class="line">  &#125;</span><br></pre>
+<p>(4) grid</p>
+<pre class="highlight"><span class="line"><span class="selector-tag">body</span> &#123;</span><br><span class="line">    <span class="attribute">display</span>: grid;</span><br><span class="line">    <span class="attribute">grid-template-columns</span>: <span class="number">300px</span> auto <span class="number">200px</span>; // 左 中 右</span><br><span class="line">  &#125;</span><br></pre>
+
+<h2 id="3-Grid布局"><a href="#3-Grid布局" class="headerlink" title="3.Grid布局"></a>3.Grid布局</h2><blockquote>
+<p>阮一峰老师网格布局教程<a target="_blank" rel="noopener" href="http://www.ruanyifeng.com/blog/2019/03/grid-layout-tutorial.html">link</a></p>
+</blockquote>
+<h2 id="4-双飞翼-x2F-圣杯布局"><a href="#4-双飞翼-x2F-圣杯布局" class="headerlink" title="4.双飞翼&#x2F;圣杯布局"></a>4.双飞翼&#x2F;圣杯布局</h2><blockquote>
+<p>教程<a target="_blank" rel="noopener" href="https://juejin.cn/post/6844903817104850952">link</a></p>
+</blockquote>
+<h2 id="5-px-em-rem-vw-vh的区别"><a href="#5-px-em-rem-vw-vh的区别" class="headerlink" title="5.px em rem vw vh的区别"></a>5.px em rem vw vh的区别</h2><table>
+<thead>
+<tr>
+<th>px</th>
+<th>像素，相对长度单位，相对于屏幕分辨率</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>em</td>
+<td>参考父元素的font-size，具有继承的特点。父：14px,则1em&#x3D;14px</td>
+</tr>
+<tr>
+<td>rem</td>
+<td>参考物是HTML根元素的font-size大小</td>
+</tr>
+<tr>
+<td>vm &#x2F; vh</td>
+<td>相对于视窗宽度和高度的百分比。1vm &#x3D; 视窗的1%</td>
+</tr>
+</tbody></table>
+<h3 id="rem实现页面等比例放大-x2F-缩小"><a href="#rem实现页面等比例放大-x2F-缩小" class="headerlink" title="rem实现页面等比例放大&#x2F;缩小"></a>rem实现页面等比例放大&#x2F;缩小</h3><pre class="highlight"><span class="line">&lt;script&gt;</span><br><span class="line">  <span class="title function_">initPage</span>();</span><br><span class="line">  <span class="keyword">function</span> <span class="title function_">initPage</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">var</span> clientWidth =</span><br><span class="line">      <span class="variable language_">document</span>.<span class="property">documentElement</span>.<span class="property">clientWidth</span> || <span class="variable language_">document</span>.<span class="property">body</span> / clientWidth; <span class="comment">//获取屏幕可视区宽</span></span><br><span class="line">    <span class="keyword">var</span> html = <span class="variable language_">document</span>.<span class="title function_">getElementsByTagName</span>(<span class="string">&quot;html&quot;</span>)[<span class="number">0</span>]; <span class="comment">//获取html根元素</span></span><br><span class="line">    html.<span class="property">style</span>.<span class="property">fontSize</span> = clientWidth / <span class="number">10</span> + <span class="string">&quot;px&quot;</span>; <span class="comment">//动态设置font-size大小</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="variable language_">window</span>.<span class="property">onresize</span> = initPage;</span><br><span class="line">&lt;/script&gt;</span><br></pre>
+<h3 id="响应式布局"><a href="#响应式布局" class="headerlink" title="响应式布局"></a>响应式布局</h3><p>百分比布局， 媒体查询布局， rem布局， vm&#x2F;vh响应式布局， flex</p>
+<h2 id="6-position"><a href="#6-position" class="headerlink" title="6.position"></a>6.position</h2><table>
+<thead>
+<tr>
+<th>属性值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>static</td>
+<td>默认，出现在正常文档流中</td>
+</tr>
+<tr>
+<td>relative</td>
+<td>相对于自身应该出现的位置进行调整</td>
+</tr>
+<tr>
+<td>absolute</td>
+<td>相对于最近已定位父元素调整,如果没有，则相对于body调整</td>
+</tr>
+<tr>
+<td>fixed</td>
+<td>相对于浏览器窗口进行位置调整</td>
+</tr>
+<tr>
+<td>stick</td>
+<td>基于用户的滚动位置定位</td>
+</tr>
+</tbody></table>
+<blockquote>
+</blockquote>
+<h2 id="7-水平-x2F-垂直居中"><a href="#7-水平-x2F-垂直居中" class="headerlink" title="7.水平&#x2F;垂直居中"></a>7.水平&#x2F;垂直居中</h2><h3 id="水平居中"><a href="#水平居中" class="headerlink" title="水平居中"></a>水平居中</h3><table>
+<thead>
+<tr>
+<th>行内元素</th>
+<th>text-align: center</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>子绝父相</td>
+<td>margin-left: (父width - 子width）</td>
+</tr>
+<tr>
+<td>table+margin</td>
+<td>display: table, margin: auto</td>
+</tr>
+<tr>
+<td>inline-block</td>
+<td>diaplay:inline-block; text-align: center</td>
+</tr>
+<tr>
+<td>绝对定位+transform</td>
+<td>transform: traslateX(-50%,-50%)</td>
+</tr>
+<tr>
+<td>flex布局</td>
+<td>justify-content: center</td>
+</tr>
+</tbody></table>
+<h3 id="垂直居中"><a href="#垂直居中" class="headerlink" title="垂直居中"></a>垂直居中</h3><table>
+<thead>
+<tr>
+<th>纯文字类</th>
+<th>line-height</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>子绝父相</td>
+<td>margin： auto</td>
+</tr>
+<tr>
+<td>flex布局</td>
+<td>display: flex; align-item: center</td>
+</tr>
+<tr>
+<td>table布局</td>
+<td>verical-align： middle</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>更多居中方式戳<a target="_blank" rel="noopener" href="https://juejin.cn/post/7062608828570796046">link</a></p>
+</blockquote>
+<h2 id="8-css图形绘制"><a href="#8-css图形绘制" class="headerlink" title="8.css图形绘制"></a>8.css图形绘制</h2><h3 id="绘制三角形"><a href="#绘制三角形" class="headerlink" title="绘制三角形"></a>绘制三角形</h3><blockquote>
+<p>口诀： 宽高皆为零，三边皆透明<br>width设置数值可以绘制梯形</p>
+</blockquote>
+<pre class="highlight"><span class="line"><span class="selector-class">.triangle</span> &#123;</span><br><span class="line">	<span class="attribute">width</span>: <span class="number">0</span>;</span><br><span class="line">	<span class="attribute">height</span>: <span class="number">0</span>;</span><br><span class="line">	<span class="attribute">border-right</span>: <span class="number">100px</span> solid transparent; <span class="comment">/*右三角*/</span></span><br><span class="line">	<span class="attribute">border-bottom</span>: <span class="number">100px</span> solid transparent; <span class="comment">/*下三角*/</span></span><br><span class="line">	<span class="attribute">border-left</span>: <span class="number">100px</span> solid transparent; <span class="comment">/*左三角*/</span></span><br><span class="line">	<span class="attribute">border-top</span>: <span class="number">100px</span> solid <span class="number">#000</span>; <span class="comment">/*上三角*/</span></span><br><span class="line">&#125;</span><br></pre>
+<p>效果：<br><img src="https://img-blog.csdnimg.cn/ce57d56fd492440baa7fade642994108.png" alt="在这里插入图片描述" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://img-blog.csdnimg.cn/ce57d56fd492440baa7fade642994108.png" class="lozad post-image"></p>
+<h3 id="绘制五角星"><a href="#绘制五角星" class="headerlink" title="绘制五角星"></a><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1902018">绘制五角星</a></h3><h2 id="9-css动画"><a href="#9-css动画" class="headerlink" title="9.css动画"></a>9.css动画</h2><p>css实现动画的三种方式：transition， transform， animation</p>
+<blockquote>
+<p>关于以上三种方式详解戳<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/0871857039aa">link</a></p>
+</blockquote>
+<h3 id="手写动画的最小时间间隔"><a href="#手写动画的最小时间间隔" class="headerlink" title="手写动画的最小时间间隔"></a>手写动画的最小时间间隔</h3><p>多数显示器默认频率是60Hz，一秒刷新60次，所以理论上最小间隔为1&#x2F;60*1000ms &#x3D; 16.7ms</p>
+<h2 id="10-css性能优化"><a href="#10-css性能优化" class="headerlink" title="10.css性能优化"></a>10.<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_43883485/article/details/103504171">css性能优化</a></h2><h3 id="GUP加速"><a href="#GUP加速" class="headerlink" title="GUP加速"></a>GUP加速</h3><p>在 css 中，只有 3D 转换、opacity 透明、filter 滤镜和添加了 will-change 属性的元素，浏览器才会开启硬件（GPU）加速。</p>
+<h2 id="11-隐藏元素的方法"><a href="#11-隐藏元素的方法" class="headerlink" title="11.隐藏元素的方法"></a>11.隐藏元素的方法</h2><h3 id="（1）opacity-0"><a href="#（1）opacity-0" class="headerlink" title="（1）opacity:0"></a>（1）opacity:0</h3><p>隐藏元素但不会改变页面布局，绑定的事件仍然能够触发</p>
+<h3 id="（2）visibility-hidden"><a href="#（2）visibility-hidden" class="headerlink" title="（2）visibility: hidden"></a>（2）visibility: hidden</h3><p>隐藏元素，元素占据的位置依然存在，页面布局不变，但绑定的事件不能触发。（重绘）父元素隐藏，子孙元素全隐藏，给子孙设置visibility： visible时可见</p>
+<h3 id="（3）display：none"><a href="#（3）display：none" class="headerlink" title="（3）display：none"></a>（3）display：none</h3><p>改变页面布局（回流+重绘），父元素隐藏，子孙元素没有任何办法可见。</p>
+<blockquote>
+<p><strong>回流&#x2F;重排</strong>（reflow): 当Dom的变化影响元素的几何信息，浏览器需要重新计算元素大小，将其安放在合适的位置。<br><strong>重绘</strong>（repaint）:外观发生变化但布局没变。<br>重绘不一定出现重排，重排一定出现重绘</p>
+</blockquote>
+<h3 id="（4）overflow：-hidden"><a href="#（4）overflow：-hidden" class="headerlink" title="（4）overflow： hidden"></a>（4）overflow： hidden</h3><p>该样式加在父元素身上，当父元素内的子元素超出父元素的宽高时，隐藏超出部分。（父元素必须是块级或行内块）。前三种都是加在自己身上的。（<em>这个不算隐藏元素的方法，面试会问visibility，display，overflow区别</em>）</p>
+<h3 id="（5）transform：-scal-0"><a href="#（5）transform：-scal-0" class="headerlink" title="（5）transform： scal(0)"></a>（5）transform： scal(0)</h3><h3 id="（6）z-index"><a href="#（6）z-index" class="headerlink" title="（6）z-index"></a>（6）z-index</h3><p>把元素放在最下面</p>
+<blockquote>
+<p><strong>属性</strong>：<br>Auto：堆栈顺序将设置为等于父级。<br>Number：数字可以是正数或负数。它定义了堆栈顺序。<br>Initial：默认值 0 设置为属性。<br>Inherit：属性是从父级继承的</p>
+</blockquote>
+<h2 id="12-background属性"><a href="#12-background属性" class="headerlink" title="12.background属性"></a>12.background属性</h2><table>
+<thead>
+<tr>
+<th>属性</th>
+<th>值&#x2F;描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>background-color</td>
+<td>背景颜色</td>
+</tr>
+<tr>
+<td>background-position</td>
+<td>背景图像位置</td>
+</tr>
+<tr>
+<td>background-size</td>
+<td>背景图片尺寸</td>
+</tr>
+<tr>
+<td>background-repeat</td>
+<td>如何重复背景图像</td>
+</tr>
+<tr>
+<td>background-origin</td>
+<td>规定背景图片定位区域</td>
+</tr>
+<tr>
+<td>background-clip</td>
+<td>背景绘制区域</td>
+</tr>
+<tr>
+<td>background-attachment</td>
+<td>背景图像是否固定或者随着页面的其余部分滚动</td>
+</tr>
+<tr>
+<td>background-image</td>
+<td>url(‘图像位置‘)</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>具体属性值戳<a target="_blank" rel="noopener" href="https://www.w3school.com.cn/cssref/pr_background.asp">link</a></p>
+</blockquote>
+<h2 id="12-css样式隔离"><a href="#12-css样式隔离" class="headerlink" title="12. css样式隔离"></a>12. css样式隔离</h2><blockquote>
+<p><a href="">https://juejin.cn/post/6844904034281734151#heading-9</a></p>
+</blockquote>
+<h2 id="13-BFC"><a href="#13-BFC" class="headerlink" title="13.BFC"></a>13.BFC</h2><p>BFC(block formatting context): 块级格式上下文。是一个独立的渲染区域，内部子元素的排列不会影响外部其他。</p>
+<h3 id="布局原理"><a href="#布局原理" class="headerlink" title="布局原理"></a>布局原理</h3><ul>
+<li>内部的元素垂直方向排列，垂直方向距离由margin决定。相邻元素margin会重叠。</li>
+<li>BFC不与float box重叠</li>
+<li>计算BFC高度时，浮动元素也算在内</li>
+</ul>
+<h3 id="如何开启BFC"><a href="#如何开启BFC" class="headerlink" title="如何开启BFC"></a>如何开启BFC</h3><ul>
+<li>HTML元素</li>
+<li>float不为none</li>
+<li>position为absolute或fixed</li>
+<li>display为inline-block,table-cell,table-caption</li>
+<li>overflow不为visible</li>
+</ul>
+<h3 id="BFC使用场景"><a href="#BFC使用场景" class="headerlink" title="BFC使用场景"></a>BFC使用场景</h3><ul>
+<li>清除浮动</li>
+<li>去除边距重叠</li>
+<li>避免某元素被浮动元素覆盖</li>
+</ul>
+
+  </div>
+  <div>
+    
+      <div 
+        class="post-note note-warning copyright" 
+        style="margin-top: 42px">
+        <p>
+          <span style="font-weight: bold;">作者：</span><a 
+            target="_blank" 
+            rel="nofollow noopener noreferrer" 
+            href="/about">
+            theme-kaze
+          </a>
+        </p>
+        <p>
+          <span style="font-weight: bold;">文章链接：</span><a 
+            target="_blank" 
+            rel="nofollow noopener noreferrer" 
+            href="http://example.com/2022/07/09/html-css/">
+            http://example.com/2022/07/09/html-css/
+          </a>
+        </p>
+        <p><span style="font-weight: bold;">版权声明：</span>本博客所有文章除特别声明外，均采用<a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0 协议</a>。转载请注明出处！</p>
+      </div>
+    
+  </div>
+</article>
+<div class="nav">
+  
+    <div class="nav-item-prev">
+      <a 
+        href="/2022/07/09/JavaScript/" 
+        class="nav-link">
+        <i class="iconfont icon-left nav-prev-icon"></i>
+        <div>
+          <div class="nav-label">Prev</div>
+          
+            <div class="nav-title">JavaScript </div>
+          
+        </div>
+      </a>
+    </div>
+  
+  
+    <div class="nav-item-next">
+      <a 
+        href="/2022/07/09/hello-world/" 
+        class="nav-link">
+        <div>
+          <div class="nav-label">Next</div>
+          
+            <div class="nav-title">Hello World </div>
+          
+        </div>
+        <i class="iconfont icon-right nav-next-icon"></i>
+      </a>
+    </div>
+  
+</div>
+
+<div 
+  class="card card-content toc-card" 
+  id="mobiletoc">
+  <div class="toc-header">
+  <i 
+    class="iconfont icon-menu" 
+    style="padding-right: 2px;">
+  </i>TOC
+</div>
+<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-flex%E5%B8%83%E5%B1%80"><span class="toc-text">1.flex布局</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E4%B8%89%E6%A0%8F%E5%B8%83%E5%B1%80%EF%BC%88%E4%B8%A4%E8%BE%B9%E5%9B%BA%E5%AE%9A%EF%BC%8C%E4%B8%AD%E9%97%B4%E8%87%AA%E9%80%82%E5%BA%94%EF%BC%89"><span class="toc-text">2.三栏布局（两边固定，中间自适应）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Grid%E5%B8%83%E5%B1%80"><span class="toc-text">3.Grid布局</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E5%8F%8C%E9%A3%9E%E7%BF%BC-x2F-%E5%9C%A3%E6%9D%AF%E5%B8%83%E5%B1%80"><span class="toc-text">4.双飞翼&#x2F;圣杯布局</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-px-em-rem-vw-vh%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-text">5.px em rem vw vh的区别</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#rem%E5%AE%9E%E7%8E%B0%E9%A1%B5%E9%9D%A2%E7%AD%89%E6%AF%94%E4%BE%8B%E6%94%BE%E5%A4%A7-x2F-%E7%BC%A9%E5%B0%8F"><span class="toc-text">rem实现页面等比例放大&#x2F;缩小</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%93%8D%E5%BA%94%E5%BC%8F%E5%B8%83%E5%B1%80"><span class="toc-text">响应式布局</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-position"><span class="toc-text">6.position</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-%E6%B0%B4%E5%B9%B3-x2F-%E5%9E%82%E7%9B%B4%E5%B1%85%E4%B8%AD"><span class="toc-text">7.水平&#x2F;垂直居中</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B0%B4%E5%B9%B3%E5%B1%85%E4%B8%AD"><span class="toc-text">水平居中</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9E%82%E7%9B%B4%E5%B1%85%E4%B8%AD"><span class="toc-text">垂直居中</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-css%E5%9B%BE%E5%BD%A2%E7%BB%98%E5%88%B6"><span class="toc-text">8.css图形绘制</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%98%E5%88%B6%E4%B8%89%E8%A7%92%E5%BD%A2"><span class="toc-text">绘制三角形</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%98%E5%88%B6%E4%BA%94%E8%A7%92%E6%98%9F"><span class="toc-text">绘制五角星</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-css%E5%8A%A8%E7%94%BB"><span class="toc-text">9.css动画</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%89%8B%E5%86%99%E5%8A%A8%E7%94%BB%E7%9A%84%E6%9C%80%E5%B0%8F%E6%97%B6%E9%97%B4%E9%97%B4%E9%9A%94"><span class="toc-text">手写动画的最小时间间隔</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10-css%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96"><span class="toc-text">10.css性能优化</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#GUP%E5%8A%A0%E9%80%9F"><span class="toc-text">GUP加速</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#11-%E9%9A%90%E8%97%8F%E5%85%83%E7%B4%A0%E7%9A%84%E6%96%B9%E6%B3%95"><span class="toc-text">11.隐藏元素的方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%881%EF%BC%89opacity-0"><span class="toc-text">（1）opacity:0</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%882%EF%BC%89visibility-hidden"><span class="toc-text">（2）visibility: hidden</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%883%EF%BC%89display%EF%BC%9Anone"><span class="toc-text">（3）display：none</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%884%EF%BC%89overflow%EF%BC%9A-hidden"><span class="toc-text">（4）overflow： hidden</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%885%EF%BC%89transform%EF%BC%9A-scal-0"><span class="toc-text">（5）transform： scal(0)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%886%EF%BC%89z-index"><span class="toc-text">（6）z-index</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#12-background%E5%B1%9E%E6%80%A7"><span class="toc-text">12.background属性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#12-css%E6%A0%B7%E5%BC%8F%E9%9A%94%E7%A6%BB"><span class="toc-text">12. css样式隔离</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#13-BFC"><span class="toc-text">13.BFC</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%83%E5%B1%80%E5%8E%9F%E7%90%86"><span class="toc-text">布局原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E5%BC%80%E5%90%AFBFC"><span class="toc-text">如何开启BFC</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#BFC%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="toc-text">BFC使用场景</span></a></li></ol></li></ol>
+</div>
+            </main>
+            <aside class="right-column">
+              <div class="sticky-widescreen">
+  
+  
+    <article class="card card-content toc-card">
+      <div class="toc-header">
+  <i 
+    class="iconfont icon-menu" 
+    style="padding-right: 2px;">
+  </i>TOC
+</div>
+<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-flex%E5%B8%83%E5%B1%80"><span class="toc-text">1.flex布局</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E4%B8%89%E6%A0%8F%E5%B8%83%E5%B1%80%EF%BC%88%E4%B8%A4%E8%BE%B9%E5%9B%BA%E5%AE%9A%EF%BC%8C%E4%B8%AD%E9%97%B4%E8%87%AA%E9%80%82%E5%BA%94%EF%BC%89"><span class="toc-text">2.三栏布局（两边固定，中间自适应）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Grid%E5%B8%83%E5%B1%80"><span class="toc-text">3.Grid布局</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E5%8F%8C%E9%A3%9E%E7%BF%BC-x2F-%E5%9C%A3%E6%9D%AF%E5%B8%83%E5%B1%80"><span class="toc-text">4.双飞翼&#x2F;圣杯布局</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-px-em-rem-vw-vh%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-text">5.px em rem vw vh的区别</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#rem%E5%AE%9E%E7%8E%B0%E9%A1%B5%E9%9D%A2%E7%AD%89%E6%AF%94%E4%BE%8B%E6%94%BE%E5%A4%A7-x2F-%E7%BC%A9%E5%B0%8F"><span class="toc-text">rem实现页面等比例放大&#x2F;缩小</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%93%8D%E5%BA%94%E5%BC%8F%E5%B8%83%E5%B1%80"><span class="toc-text">响应式布局</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-position"><span class="toc-text">6.position</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-%E6%B0%B4%E5%B9%B3-x2F-%E5%9E%82%E7%9B%B4%E5%B1%85%E4%B8%AD"><span class="toc-text">7.水平&#x2F;垂直居中</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B0%B4%E5%B9%B3%E5%B1%85%E4%B8%AD"><span class="toc-text">水平居中</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9E%82%E7%9B%B4%E5%B1%85%E4%B8%AD"><span class="toc-text">垂直居中</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-css%E5%9B%BE%E5%BD%A2%E7%BB%98%E5%88%B6"><span class="toc-text">8.css图形绘制</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%98%E5%88%B6%E4%B8%89%E8%A7%92%E5%BD%A2"><span class="toc-text">绘制三角形</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%98%E5%88%B6%E4%BA%94%E8%A7%92%E6%98%9F"><span class="toc-text">绘制五角星</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-css%E5%8A%A8%E7%94%BB"><span class="toc-text">9.css动画</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%89%8B%E5%86%99%E5%8A%A8%E7%94%BB%E7%9A%84%E6%9C%80%E5%B0%8F%E6%97%B6%E9%97%B4%E9%97%B4%E9%9A%94"><span class="toc-text">手写动画的最小时间间隔</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10-css%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96"><span class="toc-text">10.css性能优化</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#GUP%E5%8A%A0%E9%80%9F"><span class="toc-text">GUP加速</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#11-%E9%9A%90%E8%97%8F%E5%85%83%E7%B4%A0%E7%9A%84%E6%96%B9%E6%B3%95"><span class="toc-text">11.隐藏元素的方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%881%EF%BC%89opacity-0"><span class="toc-text">（1）opacity:0</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%882%EF%BC%89visibility-hidden"><span class="toc-text">（2）visibility: hidden</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%883%EF%BC%89display%EF%BC%9Anone"><span class="toc-text">（3）display：none</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%884%EF%BC%89overflow%EF%BC%9A-hidden"><span class="toc-text">（4）overflow： hidden</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%885%EF%BC%89transform%EF%BC%9A-scal-0"><span class="toc-text">（5）transform： scal(0)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%886%EF%BC%89z-index"><span class="toc-text">（6）z-index</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#12-background%E5%B1%9E%E6%80%A7"><span class="toc-text">12.background属性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#12-css%E6%A0%B7%E5%BC%8F%E9%9A%94%E7%A6%BB"><span class="toc-text">12. css样式隔离</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#13-BFC"><span class="toc-text">13.BFC</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%83%E5%B1%80%E5%8E%9F%E7%90%86"><span class="toc-text">布局原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E5%BC%80%E5%90%AFBFC"><span class="toc-text">如何开启BFC</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#BFC%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="toc-text">BFC使用场景</span></a></li></ol></li></ol>
+    </article>
+  
+  
+  <article class="card card-content">
+    <div class="recent-posts-card">
+  <div class="recent-posts-header">
+    <i 
+      class="iconfont icon-wenzhang_huaban" 
+      style="padding-right: 2px;">
+    </i>Recent Posts
+  </div>
+  <div class="recent-posts-list">
+    
+      <div class="recent-posts-item">
+        <div class="recent-posts-item-title">2022-07-09</div>
+        <a href="/2022/07/09/Algorithm/"><div class="recent-posts-item-content">Algorithm</div></a>
+      </div>
+    
+      <div class="recent-posts-item">
+        <div class="recent-posts-item-title">2022-07-09</div>
+        <a href="/2022/07/09/JavaScript/"><div class="recent-posts-item-content">JavaScript</div></a>
+      </div>
+    
+      <div class="recent-posts-item">
+        <div class="recent-posts-item-title">2022-07-09</div>
+        <a href="/2022/07/09/html-css/"><div class="recent-posts-item-content">html-css</div></a>
+      </div>
+    
+      <div class="recent-posts-item">
+        <div class="recent-posts-item-title">2022-07-09</div>
+        <a href="/2022/07/09/hello-world/"><div class="recent-posts-item-content">Hello World</div></a>
+      </div>
+    
+  </div>
+</div>
+  </article>
+  
+  
+</div>
+            </aside>
+          </div>
+        </div>
+      </div>
+    </div>
+     
+    <footer class="footer">
+  <div class="footer-container">
+    <div>
+      <div class="footer-dsc">
+        <span>
+          Copyright ©
+          
+            2020
+          
+          
+                - 
+                2022
+          
+        </span>
+        &nbsp;
+        <a 
+          href="/" 
+          class="footer-link">
+          Theme Kaze
+        </a>
+      </div>
+    </div>
+
+    
+      <div class="footer-dsc">
+        
+          Powered by
+          <a 
+            href="https://hexo.io/" 
+            class="footer-link" 
+            target="_blank" 
+            rel="nofollow noopener noreferrer">
+            &nbsp;Hexo
+          </a>
+        
+        
+          <span>&nbsp;|&nbsp;</span>
+        
+        
+          Theme -
+          <a 
+            href="https://github.com/theme-kaze" 
+            class="footer-link" 
+            target="_blank"
+            rel="nofollow noopener noreferrer">
+            &nbsp;Kaze
+          </a>
+        
+      </div>
+    
+    
+    
+    
+</footer>
+ 
+    
+  <a 
+    role="button" 
+    id="scrollbutton" 
+    class="basebutton" 
+    aria-label="回到顶部">
+    <i class="iconfont icon-arrowleft button-icon"></i>
+  </a>
+
+<a 
+  role="button" 
+  id="menubutton"
+  aria-label="menu button"
+  class="basebutton">
+  <i class="iconfont icon-menu button-icon"></i>
+</a>
+<a 
+  role="button" 
+  id="popbutton" 
+  class="basebutton" 
+  aria-label="控制中心">
+  <i class="iconfont icon-expand button-icon"></i>
+</a>
+<a 
+  role="button" 
+  id="darkbutton" 
+  class="basebutton darkwidget" 
+  aria-label="夜色模式">
+  <i class="iconfont icon-weather button-icon"></i>
+</a>
+<a 
+  role="button" 
+  id="searchbutton" 
+  class="basebutton searchwidget" 
+  aria-label="搜索">
+  <i class="iconfont icon-search button-icon"></i>
+</a> 
+     
+     
+     
+      <script>
+  var addImgLayout = function () {
+    var img = document.querySelectorAll('.post-content img')
+    var i
+    for (i = 0; i < img.length; i++) {
+      var wrapper = document.createElement('a')
+      wrapper.setAttribute('href', img[i].getAttribute('data-src'))
+      wrapper.setAttribute('aria-label', 'illustration')
+      wrapper.style.cssText =
+        'width: 100%; display: flex; justify-content: center;'
+      if (img[i].alt) wrapper.dataset.caption = img[i].alt
+      wrapper.dataset.nolink = true
+      img[i].before(wrapper)
+      wrapper.append(img[i])
+      var divWrap = document.createElement('div')
+      divWrap.classList.add('gallery')
+      wrapper.before(divWrap)
+      divWrap.append(wrapper)
+    }
+    baguetteBox.run('.gallery')
+  }
+</script>
+<script>
+  loadScript(
+    "/js/lib/lightbox/baguetteBox.min.js",
+    addImgLayout
+  )
+</script>
+ 
+     
+     
+    <script src="/js/main.js"></script> 
+     
+    
+      <script>
+        var addLazyload = function () {
+          var observer = lozad('.lozad', {
+            load: function (el) {
+              el.srcset = el.getAttribute('data-src')
+            },
+            loaded: function (el) {
+              el.classList.add('loaded')
+            },
+          })
+          observer.observe()
+        }
+      </script>
+      <script>
+        loadScript('/js/lib/lozad.min.js', addLazyload)
+      </script>
+    
+    <script src="//instant.page/5.1.0" type="module"
+      integrity="sha384-by67kQnR+pyfy8yWP4kPO12fHKRLHZPfEsiSXR8u2IKcTdxD805MGUXBzVPnkLHw"></script>
+    
+    
+  </body>
+</html>

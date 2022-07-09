@@ -1,0 +1,1089 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="UTF-8">
+  <meta 
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+  <meta 
+    http-equiv="X-UA-Compatible" 
+    content="ie=edge">
+  <meta 
+    name="theme-color" 
+    content="#fff" 
+    id="theme-color">
+  <meta 
+    name="description" 
+    content="Phil">
+  <link 
+    rel="icon" 
+    href="/">
+  <title>JavaScript</title>
+  
+    
+      <meta 
+        property="og:title" 
+        content="JavaScript">
+    
+    
+      <meta 
+        property="og:url" 
+        content="http://example.com/2022/07/09/JavaScript/index.html">
+    
+    
+      <meta 
+        property="og:img" 
+        content="https://img.songhn.com/img/Y67gdd.png">
+    
+    
+    
+      <meta 
+        property="og:type" 
+        content="article">
+      <meta 
+        property="og:article:published_time" 
+        content="2022-07-09">
+      <meta 
+        property="og:article:modified_time" 
+        content="2022-07-09">
+      <meta 
+        property="og:article:author" 
+        content="theme-kaze">
+      
+        
+      
+    
+  
+  
+  <link rel="preload" href="//at.alicdn.com/t/font_1946621_i1kgafibvw.css" as="style" >
+  <link rel="preload" href="//at.alicdn.com/t/font_1952792_89b4ac4k4up.css" as="style" >
+  <link rel="preload" href="/css/main.css" as="style" >
+  
+  <link rel="modulepreload" href="//instant.page/5.1.0">
+  
+  <link rel="stylesheet" href="/css/main.css">
+  
+  <link rel="stylesheet" href="//at.alicdn.com/t/font_1946621_i1kgafibvw.css">
+  
+  <link rel="stylesheet" href="//at.alicdn.com/t/font_1952792_89b4ac4k4up.css">
+  
+  
+  
+    <link rel="stylesheet" href="/js/lib/lightbox/baguetteBox.min.css">
+  
+  <script>
+    function loadScript(url, cb) {
+      var script = document.createElement('script');
+      script.src = url;
+      if (cb) script.onload = cb;
+      script.async = true;
+      document.body.appendChild(script);
+    }
+    function loadCSS(href, data, attr) {
+      var sheet = document.createElement('link');
+      sheet.ref = 'stylesheet';
+      sheet.href = href;
+      sheet.dataset[data] = attr;
+      document.head.appendChild(sheet);
+    }
+    function changeCSS(cssFile, data, attr) {
+      var oldlink = document.querySelector(data);
+      var newlink = document.createElement("link");
+      newlink.setAttribute("rel", "stylesheet");
+      newlink.setAttribute("href", cssFile);
+      newlink.dataset.prism = attr;
+      document.head.replaceChild(newlink, oldlink);
+    }
+  </script>
+  
+    
+  
+  <script>
+    // control reverse button
+    var reverseDarkList = {
+      dark: 'light',
+      light: 'dark'
+    };
+    var themeColor = {
+      dark: '#1c1c1e',
+      light: '#fff'
+    }
+    // get the data of css prefers-color-scheme
+    var getCssMediaQuery = function() {
+      return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    };
+    // reverse current darkmode setting function
+    var reverseDarkModeSetting = function() {
+      var setting = localStorage.getItem('user-color-scheme');
+      if(reverseDarkList[setting]) {
+        setting = reverseDarkList[setting];
+      } else if(setting === null) {
+        setting = reverseDarkList[getCssMediaQuery()];
+      } else {
+        return;
+      }
+      localStorage.setItem('user-color-scheme', setting);
+      return setting;
+    };
+    // apply current darkmode setting
+  </script>
+  
+    <script>
+      var setDarkmode = function(mode) {
+      var setting = mode || localStorage.getItem('user-color-scheme');
+      if(setting === getCssMediaQuery()) {
+        document.documentElement.removeAttribute('data-user-color-scheme');
+        localStorage.removeItem('user-color-scheme');
+        document.getElementById('theme-color').content = themeColor[setting];
+        document.getElementById('theme-color').dataset.mode = setting;
+      } else if(reverseDarkList[setting]) {
+        document.documentElement.setAttribute('data-user-color-scheme', setting);
+        document.getElementById('theme-color').content = themeColor[setting];
+        document.getElementById('theme-color').dataset.mode = setting;
+      } else {
+        document.documentElement.removeAttribute('data-user-color-scheme');
+        localStorage.removeItem('user-color-scheme');
+        document.getElementById('theme-color').content = themeColor[getCssMediaQuery()];
+        document.getElementById('theme-color').dataset.mode = getCssMediaQuery();
+      }
+    };
+    setDarkmode();
+    </script>
+  
+  
+  
+    <link rel="preload" href="/js/lib/lightbox/baguetteBox.min.js" as="script">
+    <link rel="preload" href="/js/lib/lightbox/baguetteBox.min.css" as="style" >
+  
+  
+    <link rel="preload" href="/js/lib/lozad.min.js" as="script">
+  
+  
+  
+  
+  
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+  <body>
+    <div class="wrapper">
+       
+      <nav class="navbar">
+  <div class="navbar-logo">
+    <a class="navbar-logo-main" href="/">
+      
+      <span class="navbar-logo-dsc">Theme Kaze</span>
+      </a>
+  </div>
+  <div class="navbar-menu">
+    
+      <a 
+        href="/" 
+        class="navbar-menu-item">
+        
+          Home
+        
+      </a>
+    
+      <a 
+        href="/archives" 
+        class="navbar-menu-item">
+        
+          Archive
+        
+      </a>
+    
+      <a 
+        href="/tags" 
+        class="navbar-menu-item">
+        
+          Tags
+        
+      </a>
+    
+      <a 
+        href="/categories" 
+        class="navbar-menu-item">
+        
+          Categories
+        
+      </a>
+    
+      <a 
+        href="/about" 
+        class="navbar-menu-item">
+        
+          About
+        
+      </a>
+    
+      <a 
+        href="/links" 
+        class="navbar-menu-item">
+        
+          Friends
+        
+      </a>
+    
+    <button 
+      class="navbar-menu-item darknavbar navbar-menu-btn" 
+      aria-label="Toggle dark mode"
+      id="dark">
+      <i class="iconfont icon-weather"></i>
+    </button>
+    <button 
+      class="navbar-menu-item searchnavbar navbar-menu-btn" 
+      aria-label="Toggle search"
+      id="search">
+      <!-- <i 
+        class="iconfont icon-search" 
+        style="font-size: 1.2rem; font-weight: 400;">
+      </i> -->
+      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img"
+        class="iconify iconify--ion" width="28" height="28" preserveAspectRatio="xMidYMid meet" viewBox="0 0 512 512">
+        <path fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="28"
+          d="M256 80a176 176 0 1 0 176 176A176 176 0 0 0 256 80Z"></path>
+        <path fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="28"
+          d="M232 160a72 72 0 1 0 72 72a72 72 0 0 0-72-72Z"></path>
+        <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="28"
+          d="M283.64 283.64L336 336"></path>
+      </svg>
+    </button>
+  </div>
+</nav> 
+      
+      <div 
+        id="local-search" 
+        style="display: none">
+        <input
+          class="navbar-menu-item"
+          id="search-input"
+          placeholder="请输入搜索内容..." />
+        <div id="search-content"></div>
+      </div>
+      
+      <div class="section-wrap">
+        <div class="container">
+          <div class="columns">
+            <aside class="left-column">
+              
+              <div class="card card-author">
+                
+  <img 
+    src="https://img.songhn.com/img/Y67gdd.png" 
+    class="author-img"
+    width="88"
+    height="88"
+    alt="author avatar">
+
+<p class="author-name">theme-kaze</p>
+<p class="author-description">designed by theme-kaze</p>
+<div class="author-message">
+  <a 
+    class="author-posts-count" 
+    href="/archives">
+    <span>4</span>
+    <span>Posts</span>
+  </a>
+  <a 
+    class="author-categories-count" 
+    href="/categories">
+    <span>3</span>
+    <span>Categories</span>
+  </a>
+  <a 
+    class="author-tags-count" 
+    href="/tags">
+    <span>0</span>
+    <span>Tags</span>
+  </a>
+</div>
+
+              </div>
+               <div class="sticky-tablet">
+  
+  
+    <article class="display-when-two-columns spacer">
+      <div class="card card-content toc-card">
+        <div class="toc-header">
+  <i 
+    class="iconfont icon-menu" 
+    style="padding-right: 2px;">
+  </i>TOC
+</div>
+<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#JavaScript%E7%9F%A5%E8%AF%86%E7%82%B9"><span class="toc-text">JavaScript知识点</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E6%A3%80%E6%B5%8B%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="toc-text">1. 检测数据类型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%881%EF%BC%89typeof"><span class="toc-text">（1）typeof</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%882%EF%BC%89instanceof"><span class="toc-text">（2）instanceof</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%883%EF%BC%89constructor"><span class="toc-text">（3）constructor</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-Object-prototype-toString-call"><span class="toc-text">(4) Object.prototype.toString.call()</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-null-%E5%92%8C-undefined%E5%8C%BA%E5%88%AB"><span class="toc-text">2.null 和 undefined区别</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9B%B8%E5%90%8C%E7%82%B9"><span class="toc-text">相同点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8D%E5%90%8C%E7%82%B9"><span class="toc-text">不同点</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-x3D-x3D-%E5%92%8C-x3D-x3D-x3D-%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-text">3. &#x3D;&#x3D; 和&#x3D;&#x3D;&#x3D;的区别</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#x3D-x3D-%E8%BF%9B%E8%A1%8C%E6%AF%94%E8%BE%83%E6%97%B6%E4%BC%9A%E5%B0%86%E7%B1%BB%E5%9E%8B%E4%B8%8D%E5%90%8C%E7%9A%84%E8%BF%9B%E8%A1%8C%E9%9A%90%E5%BC%8F%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2%EF%BC%8C%E8%BD%AC%E6%8D%A2%E8%A7%84%E5%88%99%E5%A6%82%E4%B8%8B"><span class="toc-text">&#x3D;&#x3D;进行比较时会将类型不同的进行隐式类型转换，转换规则如下</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%89%B9%E6%AE%8A%E6%83%85%E5%86%B5"><span class="toc-text">特殊情况</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-typeof-NaN"><span class="toc-text">4.typeof(NaN)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-%E6%89%8B%E5%86%99call%E3%80%81apply%E3%80%81bind"><span class="toc-text">5.手写call、apply、bind</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-%E6%89%8B%E5%86%99new"><span class="toc-text">6. 手写new</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AD%97%E9%9D%A2%E9%87%8F%E5%88%9B%E5%BB%BA%E5%AF%B9%E8%B1%A1"><span class="toc-text">字面量创建对象</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#new%E5%88%9B%E5%BB%BA%E5%AF%B9%E8%B1%A1"><span class="toc-text">new创建对象</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-const-let-var%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-text">7. const let var的区别</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B3%A8%E6%84%8F"><span class="toc-text">注意</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-%E9%97%AD%E5%8C%85%E9%87%8C%E7%9A%84%E5%8F%98%E9%87%8F%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%8D%E4%BC%9A%E8%A2%AB%E5%9B%9E%E6%94%B6"><span class="toc-text">8.闭包里的变量为什么不会被回收</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6"><span class="toc-text">什么是垃圾回收</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E9%97%AD%E5%8C%85"><span class="toc-text">什么是闭包</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%97%AD%E5%8C%85%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%8D%E5%9B%9E%E6%94%B6"><span class="toc-text">闭包为什么不回收</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-JavaScript%E5%86%85%E5%AD%98%E6%B3%84%E9%9C%B2%E5%A6%82%E4%BD%95%E6%A3%80%E6%B5%8B%EF%BC%9F%E5%9C%BA%E6%99%AF%E6%9C%89%E5%93%AA%E4%BA%9B%EF%BC%9F"><span class="toc-text">9.JavaScript内存泄露如何检测？场景有哪些？</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%97%AD%E5%8C%85%E6%98%AF%E5%86%85%E5%AD%98%E6%B3%84%E9%9C%B2%E5%90%97"><span class="toc-text">闭包是内存泄露吗</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A3%80%E6%B5%8B%E5%86%85%E5%AD%98%E5%8F%98%E5%8C%96%E6%96%B9%E6%B3%95"><span class="toc-text">检测内存变化方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%86%85%E5%AD%98%E6%B3%84%E9%9C%B2%E5%9C%BA%E6%99%AF%EF%BC%88Vue%E4%B8%BA%E4%BE%8B%EF%BC%89"><span class="toc-text">内存泄露场景（Vue为例）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%87%8D%E7%82%B9"><span class="toc-text">重点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#set-map-weakMap-WeakSet-%E5%BC%B1%E5%BC%95%E7%94%A8"><span class="toc-text">set  map  weakMap   WeakSet  弱引用</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10-%E6%89%A7%E8%A1%8C%E4%B8%8A%E4%B8%8B%E6%96%87%E5%92%8C%E6%89%A7%E8%A1%8C%E6%A0%88"><span class="toc-text">10.执行上下文和执行栈</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%AF%E6%89%A7%E8%A1%8C%E4%BB%A3%E7%A0%81"><span class="toc-text">可执行代码</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%89%A7%E8%A1%8C%E4%B8%8A%E4%B8%8B%E6%96%87"><span class="toc-text">执行上下文</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%89%A7%E8%A1%8C%E4%B8%8A%E4%B8%8B%E6%96%87%E6%A0%88"><span class="toc-text">执行上下文栈</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#11-%E4%BD%9C%E7%94%A8%E5%9F%9F%E9%93%BE"><span class="toc-text">11.作用域链</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%9C%E7%94%A8%E5%9F%9F"><span class="toc-text">作用域</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%9C%E7%94%A8%E5%9F%9F%E9%93%BE"><span class="toc-text">作用域链</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#12-%E5%8F%98%E9%87%8F%E5%AF%B9%E8%B1%A1"><span class="toc-text">12 .变量对象</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%A8%E5%B1%80%E4%B8%8A%E4%B8%8B%E6%96%87"><span class="toc-text">全局上下文</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%87%BD%E6%95%B0%E4%B8%8A%E4%B8%8B%E6%96%87"><span class="toc-text">函数上下文</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#13-js%E7%9A%84%E9%9D%99%E6%80%81%E4%BD%9C%E7%94%A8%E5%9F%9F%E5%92%8C%E5%8A%A8%E6%80%81%E4%BD%9C%E7%94%A8%E5%9F%9F"><span class="toc-text">13.js的静态作用域和动态作用域</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#14-%E5%8E%9F%E5%9E%8B%E5%92%8C%E5%8E%9F%E5%9E%8B%E9%93%BE"><span class="toc-text">14.原型和原型链</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8E%9F%E5%9E%8B%E9%93%BE%E6%9F%A5%E6%89%BE"><span class="toc-text">原型链查找</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%87%8D%E5%86%99%E5%8E%9F%E5%9E%8B%E7%9A%84%E9%97%AE%E9%A2%98"><span class="toc-text">重写原型的问题</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Object-create"><span class="toc-text">Object.create</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#in%E6%93%8D%E4%BD%9C%E7%AC%A6"><span class="toc-text">in操作符</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#hasOwnProperty-NaN"><span class="toc-text">hasOwnProperty</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#for-%E2%80%A6-in"><span class="toc-text">for … in</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Object-keys-%E3%80%81Object-values-%E3%80%81Object-entries"><span class="toc-text">Object.keys() 、Object.values()、Object.entries( )</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AF%B4%E8%AF%B4-%E7%9A%84%E5%8E%9F%E5%9E%8B%E9%93%BE"><span class="toc-text">说说 [] 的原型链</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#15-%E7%BB%A7%E6%89%BF"><span class="toc-text">15.继承</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8E%9F%E5%9E%8B%E9%93%BE%E7%BB%A7%E6%89%BF"><span class="toc-text">原型链继承</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%80%9F%E7%94%A8%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0-%E7%BB%8F%E5%85%B8%E7%BB%A7%E6%89%BF"><span class="toc-text">借用构造函数(经典继承)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BB%84%E5%90%88%E7%BB%A7%E6%89%BF"><span class="toc-text">组合继承</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8E%9F%E5%9E%8B%E5%BC%8F%E7%BB%A7%E6%89%BF"><span class="toc-text">原型式继承</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AF%84%E7%94%9F%E5%BC%8F%E7%BB%A7%E6%89%BF"><span class="toc-text">寄生式继承</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AF%84%E7%94%9F%E7%BB%84%E5%90%88%E5%BC%8F%E7%BB%A7%E6%89%BF"><span class="toc-text">寄生组合式继承</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#16-%E6%89%8B%E5%86%99%E6%B7%B1%E6%8B%B7%E8%B4%9D%E5%92%8C%E6%B5%85%E6%8B%B7%E8%B4%9D"><span class="toc-text">16.手写深拷贝和浅拷贝</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B5%85%E6%8B%B7%E8%B4%9D"><span class="toc-text">浅拷贝</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B7%B1%E6%8B%B7%E8%B4%9D"><span class="toc-text">深拷贝</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#17-%E6%B5%8F%E8%A7%88%E5%99%A8%E5%92%8Cnodejs%E7%9A%84%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB"><span class="toc-text">17.浏览器和nodejs的事件循环有什么区别</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9A%84%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF"><span class="toc-text">浏览器的事件循环</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#nodejs%E5%BC%82%E6%AD%A5"><span class="toc-text">nodejs异步</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8C%BA%E5%88%AB"><span class="toc-text">区别</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#18-%E5%8F%98%E9%87%8F%E6%8F%90%E5%8D%87"><span class="toc-text">18.变量提升</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#19-%E6%A8%A1%E5%9D%97%E5%8C%96"><span class="toc-text">19. 模块化</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BD%BF%E7%94%A8%E6%A8%A1%E5%9D%97%E5%8C%96"><span class="toc-text">为什么使用模块化</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A8%A1%E5%9D%97%E5%8C%85%E8%A3%85%E6%A0%BC%E5%BC%8F"><span class="toc-text">模块包装格式</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#20-%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0%E5%92%8C%E6%99%AE%E9%80%9A%E5%87%BD%E6%95%B0%E5%8C%BA%E5%88%AB"><span class="toc-text">20. 箭头函数和普通函数区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#21-%E6%89%8B%E5%86%99ajax"><span class="toc-text">21. 手写ajax</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#22-%E6%89%8B%E5%86%99%E9%98%B2%E6%8A%96%E8%8A%82%E6%B5%81"><span class="toc-text">22.手写防抖节流</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#23-%E5%87%BD%E6%95%B0%E6%9F%AF%E9%87%8C%E5%8C%96%E5%8E%9F%E7%90%86"><span class="toc-text">23.函数柯里化原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#24-%E6%98%AF%E5%90%A6%E4%BA%86%E8%A7%A3%E8%BF%87requestIdleCallback-%E5%92%8CrequestAnimationFrame%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB"><span class="toc-text">24.是否了解过requestIdleCallback? 和requestAnimationFrame有什么区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#25-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F"><span class="toc-text">25.设计模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#26-fetch%E4%BC%98%E7%BC%BA%E7%82%B9"><span class="toc-text">26. fetch优缺点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#27-Dom%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96"><span class="toc-text">27.Dom性能优化</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9A%84%E6%B8%B2%E6%9F%93%E6%9C%BA%E5%88%B6"><span class="toc-text">浏览器的渲染机制</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B3%A8%E6%84%8F-1"><span class="toc-text">注意</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E9%87%8D%E6%8E%92%E5%92%8C%E9%87%8D%E7%BB%98"><span class="toc-text">什么是重排和重绘</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%83%85%E5%86%B5%E4%BC%9A%E5%8F%91%E7%94%9F%E9%87%8D%E6%8E%92"><span class="toc-text">什么情况会发生重排</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#28-%E7%82%B9%E5%87%BB%E4%B8%89%E7%99%BE%E7%A7%92%E5%BB%B6%E8%BF%9F"><span class="toc-text">28.点击三百秒延迟</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#29-%E5%A6%82%E4%BD%95%E4%B8%8A%E4%BC%A0%E8%A7%86%E9%A2%91"><span class="toc-text">29. 如何上传视频</span></a></li></ol></li></ol>
+      </div>
+    </article>
+  
+  
+  <article class="card card-content categories-widget">
+    <div class="categories-card">
+  <div class="categories-header">
+    <i 
+      class="iconfont icon-fenlei" 
+      style="padding-right: 2px;">
+    </i>Categories
+  </div>
+  <div class="categories-list">
+    
+      <a href="/categories/%E5%89%8D%E7%AB%AF%EF%BC%8C%E7%AE%97%E6%B3%95/">
+        <div class="categories-list-item">
+          前端，算法
+          <span class="categories-list-item-badge">1</span>
+        </div>
+      </a>
+    
+      <a href="/categories/%E5%89%8D%E7%AB%AF-HTML-CSS/">
+        <div class="categories-list-item">
+          前端-HTML-CSS
+          <span class="categories-list-item-badge">1</span>
+        </div>
+      </a>
+    
+      <a href="/categories/%E5%89%8D%E7%AB%AF-javascript/">
+        <div class="categories-list-item">
+          前端-javascript
+          <span class="categories-list-item-badge">1</span>
+        </div>
+      </a>
+    
+  </div>
+</div>
+  </article>
+  
+  <article class="card card-content tags-widget">
+    <div class="tags-card">
+  <div class="tags-header">
+    <i 
+      class="iconfont icon-biaoqian" 
+      style="padding-right: 2px;">
+    </i>hot tags
+  </div>
+  <div class="tags-list">
+    
+  </div>
+</div>
+  </article>
+  
+  
+</div>
+            </aside>
+            <main class="main-column">
+              
+<article class="card card-content">
+  <header>
+    <h1 class="post-title">
+      JavaScript
+    </h1>
+  </header>
+  <div class="post-meta post-show-meta">
+    <time datetime="2022-07-09T02:54:13.000Z">
+      <i 
+        class="iconfont icon-calendar" 
+        style="margin-right: 2px;">
+      </i>
+      <span>2022-07-09</span>
+    </time>
+    
+      <span class="dot"></span>
+      
+        <a 
+          href="/categories/%E5%89%8D%E7%AB%AF-javascript/" 
+          class="post-meta-link">
+          -[前端,javascript]
+        </a>
+      
+    
+    
+      <span class="dot"></span>
+      <span>6.7k words</span>
+    
+  </div>
+  
+  </header>
+  <div 
+    id="section" 
+    class="post-content">
+    <h1 id="JavaScript知识点"><a href="#JavaScript知识点" class="headerlink" title="JavaScript知识点"></a>JavaScript知识点</h1><h2 id="1-检测数据类型"><a href="#1-检测数据类型" class="headerlink" title="1. 检测数据类型"></a>1. 检测数据类型</h2><h3 id="（1）typeof"><a href="#（1）typeof" class="headerlink" title="（1）typeof"></a>（1）typeof</h3><ul>
+<li>语法：<code>typeof 变量</code></li>
+</ul>
+<ul>
+<li>typeof 的返回值类型为字符串类型</li>
+<li>typeof 判断基本数据类型时，除了 null 的输出结果为’object’ 其它类型都能正确判断</li>
+<li>typeof 判断引用数据类型时，除了判断函数会输出’function’ 其它都输出’objec</li>
+</ul>
+<h3 id="（2）instanceof"><a href="#（2）instanceof" class="headerlink" title="（2）instanceof"></a>（2）instanceof</h3><ul>
+<li>语法<code>obj1 instanceof obj2</code></li>
+<li>缺点：只能判断对象是否在目标对象的原型链上，不能判断具体的类型</li>
+</ul>
+<h3 id="（3）constructor"><a href="#（3）constructor" class="headerlink" title="（3）constructor"></a>（3）constructor</h3><ul>
+<li>语法“<code>&quot;&quot;.constructor === string</code></li>
+<li>当一个函数 F 被定义时，JS 引擎会为 F 添加 prototype 原型，然后在 prototype 上添加了一个 constructor 属性，并让其指向 F 的引用</li>
+<li>constructor 是不稳定的，因为开发者可以重写 prototype,重写后，原有的 constructor 引用会丢失，需要我们重新指定 constructor 的引用</li>
+<li>在没有重新指定时，constructor 会默认为 Object</li>
+</ul>
+<h3 id="4-Object-prototype-toString-call"><a href="#4-Object-prototype-toString-call" class="headerlink" title="(4) Object.prototype.toString.call()"></a>(4) Object.prototype.toString.call()</h3><ul>
+<li>语法：<code>Object.prototype.toString.call(a)</code></li>
+<li>Object对象，直接调用toString() 就能返回 [object Object]</li>
+<li>其他对象，则需要通过 call &#x2F; apply 来调用才能返回正确的类型信息</li>
+</ul>
+<h2 id="2-null-和-undefined区别"><a href="#2-null-和-undefined区别" class="headerlink" title="2.null 和 undefined区别"></a>2.null 和 undefined区别</h2><h3 id="相同点"><a href="#相同点" class="headerlink" title="相同点"></a>相同点</h3><ul>
+<li>都是基本数据类型，存储在栈中</li>
+<li>undefined，null转换成布尔值都为false</li>
+</ul>
+<h3 id="不同点"><a href="#不同点" class="headerlink" title="不同点"></a>不同点</h3><p>转换成数字不同：</p>
+<pre class="highlight"><span class="line"><span class="title class_">Number</span>(<span class="literal">undefined</span>)	<span class="comment">//NaN</span></span><br><span class="line"><span class="title class_">Number</span>(<span class="literal">null</span>)	<span class="comment">//0</span></span><br></pre>
+
+<p><strong>注意：</strong>undefined &#x3D;&#x3D; null  &#x2F;&#x2F;true</p>
+<h2 id="3-x3D-x3D-和-x3D-x3D-x3D-的区别"><a href="#3-x3D-x3D-和-x3D-x3D-x3D-的区别" class="headerlink" title="3. &#x3D;&#x3D; 和&#x3D;&#x3D;&#x3D;的区别"></a>3. &#x3D;&#x3D; 和&#x3D;&#x3D;&#x3D;的区别</h2><h3 id="x3D-x3D-进行比较时会将类型不同的进行隐式类型转换，转换规则如下"><a href="#x3D-x3D-进行比较时会将类型不同的进行隐式类型转换，转换规则如下" class="headerlink" title="&#x3D;&#x3D;进行比较时会将类型不同的进行隐式类型转换，转换规则如下"></a>&#x3D;&#x3D;进行比较时会将类型不同的进行隐式类型转换，转换规则如下</h3><ul>
+<li>对象 –&gt; 字符串 –&gt; 数值</li>
+<li>布尔值 –&gt; 数值</li>
+</ul>
+<h3 id="特殊情况"><a href="#特殊情况" class="headerlink" title="特殊情况"></a>特殊情况</h3><pre class="highlight"><span class="line"><span class="title class_">NaN</span> === <span class="title class_">NaN</span>; <span class="comment">// false NaN和任何数据都不相等，包括自身</span></span><br><span class="line">[] == []; <span class="comment">// false 比较的是地址</span></span><br><span class="line">&#123;&#125; == &#123;&#125;; <span class="comment">// false 比较的是地址</span></span><br><span class="line"><span class="literal">undefined</span> == <span class="literal">null</span>; <span class="comment">// true; 特殊情况，记下</span></span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>([] == <span class="literal">false</span>); <span class="comment">// true</span></span><br><span class="line"><span class="comment">//[] 转换成字符串是&#x27;&#x27; ，然后&#x27;&#x27; 转换成数值是 0</span></span><br><span class="line"><span class="comment">//false 转换成数值是 0 所以最后比较的值是 0==0 ，结果为 true</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> ([]) &#123;</span><br><span class="line">  <span class="title function_">alert</span>(<span class="string">&quot;能弹出吗？&quot;</span>); <span class="comment">// 可以弹出弹窗</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//if 语句中的表达式或值都会被转成 boolean</span></span><br><span class="line"><span class="comment">//[] 转成布尔值是 true，所以可以弹出。</span></span><br></pre>
+
+
+
+<h2 id="4-typeof-NaN"><a href="#4-typeof-NaN" class="headerlink" title="4.typeof(NaN)"></a>4.typeof(NaN)</h2><ul>
+<li>NaN不是数字的数字类型，因此返回结果为number</li>
+<li>NaN &#x3D;&#x3D;&#x3D; NaN  为false，应该用isNaN判断是不是NaN</li>
+</ul>
+<h2 id="5-手写call、apply、bind"><a href="#5-手写call、apply、bind" class="headerlink" title="5.手写call、apply、bind"></a>5.手写call、apply、bind</h2><pre class="highlight"><span class="line"><span class="title class_">Function</span>.<span class="property">myCall</span> = <span class="keyword">function</span>(<span class="params">context</span>)&#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="keyword">typeof</span> <span class="variable language_">this</span> !== <span class="string">&#x27;function&#x27;</span>)&#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">TypeError</span>(<span class="string">&#x27;not a function&#x27;</span>)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    context = context || <span class="variable language_">window</span></span><br><span class="line">    context.<span class="property">fn</span> = <span class="variable language_">this</span></span><br><span class="line">    <span class="keyword">let</span> args = <span class="title class_">Array</span>.<span class="title function_">from</span>(<span class="variable language_">arguments</span>).<span class="title function_">slice</span>(<span class="number">1</span>)</span><br><span class="line">    <span class="keyword">let</span> result = context.<span class="title function_">fn</span>(...args)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">delete</span> context.<span class="property">fn</span></span><br><span class="line">    <span class="keyword">return</span> result</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title class_">Function</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">myApply</span> = <span class="keyword">function</span>(<span class="params">context</span>)&#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="keyword">typeof</span> <span class="variable language_">this</span> !== <span class="string">&#x27;function&#x27;</span>)&#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">TypeError</span>(<span class="string">&#x27;not a function&#x27;</span>)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    context = context || <span class="variable language_">window</span></span><br><span class="line">    context.<span class="property">fn</span> = <span class="variable language_">this</span></span><br><span class="line">    <span class="keyword">let</span> result</span><br><span class="line">    <span class="keyword">if</span>(<span class="variable language_">arguments</span>[<span class="number">1</span>])&#123;</span><br><span class="line">        result = context.<span class="title function_">fn</span>(...<span class="variable language_">arguments</span>)</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        result = context.<span class="title function_">fn</span>()</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">delete</span> context.<span class="property">fn</span></span><br><span class="line">    <span class="keyword">return</span> result</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title class_">Function</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">myBind</span> = <span class="keyword">function</span>(<span class="params">context</span>)&#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="keyword">typeof</span> <span class="variable language_">this</span> !== <span class="string">&#x27;function&#x27;</span>)&#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">TypeError</span>(<span class="string">&#x27;not a function&#x27;</span>)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> _this = <span class="variable language_">this</span></span><br><span class="line">    <span class="keyword">let</span> args = <span class="title class_">Array</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">slice</span>.<span class="title function_">call</span>(<span class="variable language_">arguments</span>, <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">function</span> <span class="title function_">F</span>(<span class="params"></span>)&#123;</span><br><span class="line">        <span class="keyword">if</span>( <span class="variable language_">this</span> <span class="keyword">instanceof</span> F)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> <span class="title function_">_this</span>(...args, ...<span class="variable language_">arguments</span>)</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">return</span> _this.<span class="title function_">apply</span>(context, args.<span class="title function_">concat</span>(...<span class="variable language_">arguments</span>))</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre>
+
+<h2 id="6-手写new"><a href="#6-手写new" class="headerlink" title="6. 手写new"></a>6. 手写new</h2><h4 id="字面量创建对象"><a href="#字面量创建对象" class="headerlink" title="字面量创建对象"></a>字面量创建对象</h4><ul>
+<li>更简单，方便阅读，不需要解析作用域，速度快</li>
+</ul>
+<h4 id="new创建对象"><a href="#new创建对象" class="headerlink" title="new创建对象"></a>new创建对象</h4><ul>
+<li>创建一个新对象</li>
+<li>使新对象的__ proto __指向函数的prototype</li>
+<li>将函数的this指向新对象，执行结果保存起来</li>
+<li>判断执行结果为</li>
+</ul>
+<pre class="highlight"><span class="line"><span class="keyword">function</span> <span class="title function_">myNew</span>(<span class="params">fn, args</span>)&#123;</span><br><span class="line">    <span class="keyword">let</span> obj = &#123;&#125;</span><br><span class="line">    obj.<span class="property">__proto__</span> = fn.<span class="property"><span class="keyword">prototype</span></span></span><br><span class="line">    <span class="keyword">let</span> result = fn.<span class="title function_">apply</span>(obj, args)</span><br><span class="line">    <span class="keyword">return</span> result <span class="keyword">instanceof</span> <span class="title class_">Object</span> ? result : obj</span><br><span class="line">&#125;</span><br></pre>
+
+<h2 id="7-const-let-var的区别"><a href="#7-const-let-var的区别" class="headerlink" title="7. const let var的区别"></a>7. const let var的区别</h2><ul>
+<li><strong>变量提升和暂时性死区</strong>： var 存在变量提升，let 和 const 不存在变量提升，所以 let 和 const 会存在暂时性死区</li>
+<li><strong>块级作用域</strong>： var 不存在块级作用域，let 和 const 存在块级作用域</li>
+<li><strong>重复声明</strong>： var 允许重复声明变量，let 和 const 在同一作用域下不允许重复声明变量</li>
+<li><strong>修改变量</strong>： var 和 let 声明的变量可以修改，const 是不可以的。</li>
+<li><strong>使用</strong>：const 用来声明常量，引用类型值。其它情况推荐用 let ，避免用 var</li>
+</ul>
+<h4 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h4><p>const 实际上保证的，并不是变量的值不得改动，而是变量指向的那个栈内存地址所保存的数据不得改动。<br>对于简单类型的数据（数值、字符串、布尔值）值就保存在变量指向的那个栈内存地址，因此等同于常量。<br>引用类型的数据（主要是对象和数组）变量指向的栈内存地址，保存的只是一个指向实际数据的指针<br>const 只能保证这个指针是固定的（即总是指向另一个固定的地址），至于它指向的数据结构是不是可变的，就完全不能控制了</p>
+<h2 id="8-闭包里的变量为什么不会被回收"><a href="#8-闭包里的变量为什么不会被回收" class="headerlink" title="8.闭包里的变量为什么不会被回收"></a>8.闭包里的变量为什么不会被回收</h2><h4 id="什么是垃圾回收"><a href="#什么是垃圾回收" class="headerlink" title="什么是垃圾回收"></a>什么是垃圾回收</h4><p>在 js 中所谓的垃圾就是指不会再被使用的值，就会被当成垃圾回收掉</p>
+<ul>
+<li>标记清除：<ul>
+<li>当函数被调用，变量进入上下文时，会被加上存在上下文标记，是不会被清理的。</li>
+<li>当函数执行完成后，就会去掉存在上下文中的标记，随后垃圾回收程序会做一次内存清理，销毁这些变量。</li>
+</ul>
+</li>
+<li>引用计数（循环引用，可能造成内存永远无法释放）<ul>
+<li>引用计数就是追踪<strong>值</strong>被引用的次数。声明变量并给它赋一个引用类型值时，这个值的引用数 为 1。</li>
+<li>如果同一个值又被赋给另一个变量，那引用数+1 。如果保存该值引用的变量被其它值覆 盖了，则引用数减 1。</li>
+<li>当引用计数为 0 时，表示这个值不再用到，垃圾收集器就会回收他所占 用的内存。</li>
+</ul>
+</li>
+</ul>
+<h4 id="什么是闭包"><a href="#什么是闭包" class="headerlink" title="什么是闭包"></a>什么是闭包</h4><p>函数执行，形成私有的执行上下文，使内部私有变量不受外界干扰，起到<strong>保护</strong>和<strong>保存</strong>的作用</p>
+<h4 id="闭包为什么不回收"><a href="#闭包为什么不回收" class="headerlink" title="闭包为什么不回收"></a>闭包为什么不回收</h4><p>这里我们要明确一个点，如果闭包函数的引用计数为 0 时，函数就会释放，它引用的变量也会被释放。</p>
+<ul>
+<li>只有当闭包函数的引用计数不为 0 时，说明闭包函数随时有可能被调用，他被调用后，就会引用他在定义时所处的环境的变量。</li>
+<li>闭包中的变量就得一直需要在内存中，则就不会被垃圾回收掉</li>
+</ul>
+<h2 id="9-JavaScript内存泄露如何检测？场景有哪些？"><a href="#9-JavaScript内存泄露如何检测？场景有哪些？" class="headerlink" title="9.JavaScript内存泄露如何检测？场景有哪些？"></a>9.JavaScript内存泄露如何检测？场景有哪些？</h2><h4 id="闭包是内存泄露吗"><a href="#闭包是内存泄露吗" class="headerlink" title="闭包是内存泄露吗"></a>闭包是内存泄露吗</h4><p>闭包不可以垃圾回收，但闭包不属于内存泄露。内存泄露指不在预期内的不能回收，闭包属于预期内的不可回收。</p>
+<p>但有时由于程序员不严谨，写了非必要的闭包，就有可能引起内存泄露。</p>
+<h4 id="检测内存变化方法"><a href="#检测内存变化方法" class="headerlink" title="检测内存变化方法"></a>检测内存变化方法</h4><p>develop tools中的performance，取消screenshots，选中memory（先点垃圾桶，再点第一个小圆圈，再开始）</p>
+<h4 id="内存泄露场景（Vue为例）"><a href="#内存泄露场景（Vue为例）" class="headerlink" title="内存泄露场景（Vue为例）"></a>内存泄露场景（Vue为例）</h4><ul>
+<li>被全局变量、函数引用，组件销毁时未清除</li>
+<li>被全局事件、定时器引用，组件销毁时未清除</li>
+<li>被自定义事件引用，组件销毁时未清除</li>
+</ul>
+<h4 id="重点"><a href="#重点" class="headerlink" title="重点"></a>重点</h4><p>前几年前端不太注重内存泄露，因为不像后端7*24持续运行</p>
+<p>近几年前端功能不断复杂，内存问题也要重点考虑</p>
+<h4 id="set-map-weakMap-WeakSet-弱引用"><a href="#set-map-weakMap-WeakSet-弱引用" class="headerlink" title="set  map  weakMap   WeakSet  弱引用"></a>set  map  weakMap   WeakSet  弱引用</h4><ul>
+<li><p>set：类似于数组，但成员是唯一且无序的，没有重复的值。</p>
+<ul>
+<li>方法：set.has&#x2F;add&#x2F;delete&#x2F;clean</li>
+<li>遍历;keys()&#x2F;values()&#x2F;entries()&#x2F;forEach(callback)</li>
+</ul>
+</li>
+<li><p>WeakSet</p>
+<ul>
+<li>WeakSet 只能储存对象引用，不能存放值，而 Set 对象都可以</li>
+<li>WeakSet 对象中储存的对象值都是被弱引用的，则这个对象将会被垃圾回收掉（不考虑该对象还存放于 WeakSet 中），所以 WeakSet 对象里有多少个成员元素，取决于垃圾回收机制有没有运行，运行前后成员个数可能不一致，遍历结束之后，有的成员可能被垃圾回收了，WeakSet 对象是无法被遍历的（ES6 规定 WeakSet 不可遍历），也没有办法拿到它包含的所有元素</li>
+</ul>
+</li>
+<li><p>map就是字典</p>
+</li>
+</ul>
+<h2 id="10-执行上下文和执行栈"><a href="#10-执行上下文和执行栈" class="headerlink" title="10.执行上下文和执行栈"></a>10.执行上下文和执行栈</h2><h3 id="可执行代码"><a href="#可执行代码" class="headerlink" title="可执行代码"></a>可执行代码</h3><p>有三种：全局代码、函数代码、eval代码</p>
+<p>当执行到一个函数的时候，就会进行准备工作，这里的“准备工作”，让我们用个更专业一点的说法，就叫做”执行上下文(execution context)”。</p>
+<h4 id="执行上下文"><a href="#执行上下文" class="headerlink" title="执行上下文"></a>执行上下文</h4><p>全局执行上下文、函数执行上下文、eval执行上下文</p>
+<p>对与每个执行上下文都有三个重要属性：变量对象（VO)、作用域链、this</p>
+<h4 id="执行上下文栈"><a href="#执行上下文栈" class="headerlink" title="执行上下文栈"></a>执行上下文栈</h4><p>为管理执行上下文，js创建执行上下文栈（Execution context stack，ECS）。栈底永远是全局执行上下文，栈顶永远是正在执行的函数执行上下文。</p>
+<h2 id="11-作用域链"><a href="#11-作用域链" class="headerlink" title="11.作用域链"></a>11.作用域链</h2><h4 id="作用域"><a href="#作用域" class="headerlink" title="作用域"></a>作用域</h4><p>变量可作用范围称作作用域</p>
+<h4 id="作用域链"><a href="#作用域链" class="headerlink" title="作用域链"></a>作用域链</h4><p>当查找变量的时候，会先从当前上下文的变量对象中查找，如果没有找到，就会从父级(词法层面上的父级)执行上下文的变量对象中查找，一直找到全局上下文的变量对象，也就是全局对象。这样由多个执行上下文的变量对象构成的链表就叫做作用域链。</p>
+<h2 id="12-变量对象"><a href="#12-变量对象" class="headerlink" title="12 .变量对象"></a>12 .变量对象</h2><p>变量对象是与执行上下文相关的数据作用域，存储了在上下文中定义的变量和函数声明。</p>
+<h4 id="全局上下文"><a href="#全局上下文" class="headerlink" title="全局上下文"></a>全局上下文</h4><p>全局上下文中的变量对象就是全局对象</p>
+<h4 id="函数上下文"><a href="#函数上下文" class="headerlink" title="函数上下文"></a>函数上下文</h4><p>在函数上下文中，我们用活动对象(activation object, AO)来表示变量对象。</p>
+<p>活动对象和变量对象其实是一个东西，只是变量对象是规范上的或者说是引擎实现上的，不可在 JavaScript 环境中访问，只有到当进入一个执行上下文中，这个执行上下文的变量对象才会被激活，所以才叫 activation object 呐，而只有被激活的变量对象，也就是活动对象上的各种属性才能被访问。</p>
+<p>活动对象是在进入函数上下文时刻被创建的，它通过函数的 arguments 属性初始化。arguments 属性值是 Arguments 对象。</p>
+<h2 id="13-js的静态作用域和动态作用域"><a href="#13-js的静态作用域和动态作用域" class="headerlink" title="13.js的静态作用域和动态作用域"></a>13.js的静态作用域和动态作用域</h2><ul>
+<li><strong>静态作用域</strong>：又称词法作用域，是指作用域在词法阶段就被确定了（<strong>函数定义的位置就决定了函数的作用域</strong>）不会改变，javascript 采用的是词法作用域。</li>
+<li><strong>动态作用域</strong>：函数的作用域在函数调用时才决定的。</li>
+</ul>
+<h2 id="14-原型和原型链"><a href="#14-原型和原型链" class="headerlink" title="14.原型和原型链"></a>14.原型和原型链</h2><p>原型分为隐式原型和显式原型，每个对象都有一个隐式原型，它指向自己的构造函数的显式原型。每个构造方法都有一个显式原型。</p>
+<ul>
+<li>__ proto <strong>是隐式原型；prototype是显式原型</strong></li>
+<li>所有实例的__ proto__都指向他们构造函数的prototype__</li>
+<li>所有的prototype都是对象，自然它的__ proto__指向的是Object()的prototype</li>
+<li>所有的构造函数的隐式原型指向的都是Function()的显示原型</li>
+<li>Object的隐式原型是null</li>
+</ul>
+<p><code>原型链</code>：多个__ proto__组成的集合称作原型链</p>
+<h4 id="原型链查找"><a href="#原型链查找" class="headerlink" title="原型链查找"></a>原型链查找</h4><ul>
+<li>当访问一个对象的某个属性时，会先在这个对象本身属性上查找，如果这个对象本身没有这个属性时，它就会去他的<code>__proto__隐式原型</code>上去找（即它的构造函数的 prototype）。</li>
+<li>如果还找不到,就去原型的原型（<code>即构造函数的prototype的__proto__</code>）上去找，….一直找到最顶层（<code>Object.prototype</code>）为止。</li>
+<li>如果还没有找到，则返回 undefined。</li>
+</ul>
+<h4 id="重写原型的问题"><a href="#重写原型的问题" class="headerlink" title="重写原型的问题"></a>重写原型的问题</h4><ul>
+<li>在已经创建了实例的情况下重写原型，会切断现有实例与新原型之间的联系</li>
+<li>如果要重写原型，一定要在重写原型后，再创建实例。</li>
+</ul>
+<h4 id="Object-create"><a href="#Object-create" class="headerlink" title="Object.create"></a>Object.create</h4><pre class="highlight"><span class="line"><span class="comment">//Object.create()方法创建一个新对象，使用现有的对象来提供新创建的对象的__proto__</span></span><br><span class="line"></span><br><span class="line"><span class="title class_">Object</span>.<span class="property">create</span> = <span class="keyword">function</span>(<span class="params">o</span>)&#123;</span><br><span class="line">    <span class="keyword">function</span> <span class="title function_">Fn</span>(<span class="params"></span>)&#123;&#125;</span><br><span class="line">    <span class="title class_">Fn</span>.<span class="property">protorype</span> = o</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Fn</span>()</span><br><span class="line">&#125;</span><br></pre>
+
+<h4 id="in操作符"><a href="#in操作符" class="headerlink" title="in操作符"></a>in操作符</h4><p>用来判断该属性是否在实例或原型上，不管该属性是在实例上还是原型上，只要能找到就返回 true</p>
+<pre class="highlight"><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">  <span class="keyword">function</span> <span class="title function_">Person</span>(<span class="params"></span>) &#123;&#125;</span></span><br><span class="line"><span class="language-javascript">  <span class="title class_">Person</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">name</span> = <span class="string">&quot;张三&quot;</span>;</span></span><br><span class="line"><span class="language-javascript">  <span class="keyword">let</span> p1 = <span class="keyword">new</span> <span class="title class_">Person</span>();</span></span><br><span class="line"><span class="language-javascript">  p1.<span class="property">age</span> = <span class="number">23</span>;</span></span><br><span class="line"><span class="language-javascript">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;name&quot;</span> <span class="keyword">in</span> p1); <span class="comment">//true 在原型Person.prototype</span></span></span><br><span class="line"><span class="language-javascript">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;age&quot;</span> <span class="keyword">in</span> p1); <span class="comment">// true 来自实例</span></span></span><br><span class="line"><span class="language-javascript">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;toString&quot;</span> <span class="keyword">in</span> p1); <span class="comment">//在原型Object的.prototype上</span></span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre>
+
+<h4 id="hasOwnProperty-NaN"><a href="#hasOwnProperty-NaN" class="headerlink" title="hasOwnProperty"></a>hasOwnProperty</h4><ul>
+<li>用来判断某个属性是否是实例自身的属性，如果是返回 true，不是则返回 false</li>
+<li>hasOwnProperty 是 JavaScript 中唯一一个处理属性但是不查找原型链的函数</li>
+</ul>
+<pre class="highlight"><span class="line"><span class="comment">//对象实例.hasOwnProperty(属性名);</span></span><br><span class="line">  <span class="keyword">function</span> <span class="title function_">Person</span>(<span class="params"></span>) &#123;&#125;</span><br><span class="line">  <span class="title class_">Person</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">name</span> = <span class="string">&quot;张三&quot;</span>;</span><br><span class="line">  <span class="keyword">let</span> p1 = <span class="keyword">new</span> <span class="title class_">Person</span>();</span><br><span class="line">  p1.<span class="property">age</span> = <span class="number">23</span>;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(p1.<span class="title function_">hasOwnProperty</span>(<span class="string">&quot;name&quot;</span>)); <span class="comment">//false 在原型上</span></span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(p1.<span class="title function_">hasOwnProperty</span>(<span class="string">&quot;age&quot;</span>)); <span class="comment">// true 来自实例</span></span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(p1.<span class="title function_">hasOwnProperty</span>(<span class="string">&quot;toString&quot;</span>)); <span class="comment">//false 在原型上</span></span><br></pre>
+
+<p><strong>案例：如何判断某个属性是否是原型上的属性</strong></p>
+<pre class="highlight"><span class="line"><span class="keyword">function</span> <span class="title function_">hasPrototypeProperty</span>(<span class="params">obj, name</span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> name <span class="keyword">in</span> obj &amp;&amp; !obj.<span class="title function_">hasOwnProPerty</span>(name);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//in为true，has为false</span></span><br></pre>
+
+<h4 id="for-…-in"><a href="#for-…-in" class="headerlink" title="for … in"></a>for … in</h4><p>以任意顺序遍历一个对象的可枚举属性（除 Symbol 类型的属性）</p>
+<p>for in 循环只会遍历我们自定义的属性，原型上默认的属性不会遍历出来</p>
+<pre class="highlight"><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> key <span class="keyword">in</span> object) &#123;</span><br><span class="line">  <span class="comment">// key 是一个变量，每次循环时会将object的一个属性的键值给变量key,直到对象中所有属性都遍历完</span></span><br><span class="line">  <span class="comment">// 要执行的代码</span></span><br><span class="line">&#125;</span><br></pre>
+
+<h4 id="Object-keys-、Object-values-、Object-entries"><a href="#Object-keys-、Object-values-、Object-entries" class="headerlink" title="Object.keys() 、Object.values()、Object.entries( )"></a>Object.keys() 、Object.values()、Object.entries( )</h4><p>以上三个方法，都只会枚举对象自身可枚举的属性，不会枚举原型上的。同时也不会枚举 Sysmbol 类型属性。</p>
+<pre class="highlight"><span class="line"><span class="comment">//Object.keys()方法可以将一个对象作为参数，然后把这个对象[key，value]对中的 key 值以数组的形式遍历出来。</span></span><br><span class="line"><span class="comment">//Object.values()方法可以将一个对象作为参数，然后把这个对象[key，value]对中的 value 值以数组的形式遍历出来。</span></span><br><span class="line"><span class="comment">//Object.entries()方法可以将对象作为参数，返回一个给定对象自身可枚举属性的键值对数组，其排列与使用 for...in循环遍历该对象时返回的顺序一致（区别在于 for-in 循环还会枚举原型链中的属性）</span></span><br><span class="line"></span><br><span class="line"><span class="title class_">Object</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">score</span> = <span class="number">100</span>;</span><br><span class="line">  <span class="keyword">let</span> s = <span class="title class_">Symbol</span>(<span class="string">&quot;不可枚举&quot;</span>);</span><br><span class="line">  <span class="keyword">const</span> obj = &#123;</span><br><span class="line">    <span class="attr">name</span>: <span class="string">&quot;张三&quot;</span>,</span><br><span class="line">    <span class="attr">age</span>: <span class="string">&quot;23&quot;</span>,</span><br><span class="line">    [s]: <span class="string">&quot;不可枚举&quot;</span>,</span><br><span class="line">  &#125;;</span><br><span class="line">  <span class="keyword">var</span> arrkeys = <span class="title class_">Object</span>.<span class="title function_">keys</span>(obj);</span><br><span class="line">  <span class="keyword">var</span> arrvalues = <span class="title class_">Object</span>.<span class="title function_">values</span>(obj);</span><br><span class="line">  <span class="keyword">var</span> arrentries = <span class="title class_">Object</span>.<span class="title function_">entries</span>(obj);</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(arrkeys); <span class="comment">// [&#x27;name&#x27;, &#x27;age&#x27;]</span></span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(arrvalues); <span class="comment">// [&#x27;张三&#x27;, &#x27;23&#x27;]</span></span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(arrentries); <span class="comment">// [[&#x27;name&#x27;,&#x27;张三&#x27;],[&#x27;age&#x27;,23]]</span></span><br></pre>
+
+<h4 id="说说-的原型链"><a href="#说说-的原型链" class="headerlink" title="说说 [] 的原型链"></a>说说 [] 的原型链</h4><ul>
+<li><code>[].__proto__</code> 指向 Array.prototype</li>
+<li><code>Array.prototype.__proto__</code> 指向 <code>Object.prototype</code></li>
+<li><code>Object.protytype.__proto__</code> 的最终指向为 null</li>
+</ul>
+<h2 id="15-继承"><a href="#15-继承" class="headerlink" title="15.继承"></a>15.继承</h2><h4 id="原型链继承"><a href="#原型链继承" class="headerlink" title="原型链继承"></a>原型链继承</h4><pre class="highlight"><span class="line"><span class="keyword">function</span> <span class="title function_">Parent</span> () &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">name</span> = <span class="string">&#x27;kevin&#x27;</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title class_">Parent</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">getName</span> = <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">this</span>.<span class="property">name</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">Child</span> () &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title class_">Child</span>.<span class="property"><span class="keyword">prototype</span></span> = <span class="keyword">new</span> <span class="title class_">Parent</span>();</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> child1 = <span class="keyword">new</span> <span class="title class_">Child</span>();</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(child1.<span class="title function_">getName</span>()) <span class="comment">// kevin</span></span><br></pre>
+
+<p><strong>缺点</strong>：子类的实例共享了父类构造函数的引用属性   不能传参</p>
+<h4 id="借用构造函数-经典继承"><a href="#借用构造函数-经典继承" class="headerlink" title="借用构造函数(经典继承)"></a>借用构造函数(经典继承)</h4><pre class="highlight"><span class="line"><span class="keyword">function</span> <span class="title function_">Parent</span> () &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">names</span> = [<span class="string">&#x27;kevin&#x27;</span>, <span class="string">&#x27;daisy&#x27;</span>];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">Child</span> () &#123;</span><br><span class="line">    <span class="title class_">Parent</span>.<span class="title function_">call</span>(<span class="variable language_">this</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> child1 = <span class="keyword">new</span> <span class="title class_">Child</span>();</span><br><span class="line"></span><br><span class="line">child1.<span class="property">names</span>.<span class="title function_">push</span>(<span class="string">&#x27;yayu&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(child1.<span class="property">names</span>); <span class="comment">// [&quot;kevin&quot;, &quot;daisy&quot;, &quot;yayu&quot;]</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> child2 = <span class="keyword">new</span> <span class="title class_">Child</span>();</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(child2.<span class="property">names</span>); <span class="comment">// [&quot;kevin&quot;, &quot;daisy&quot;]</span></span><br></pre>
+
+<p><strong>优点</strong>：1.避免了引用类型的属性被所有实例共享          2.可以在 Child 中向 Parent 传参</p>
+<p><strong>缺点</strong>：方法都在构造函数中定义，每次创建实例都会创建一遍方法。</p>
+<h4 id="组合继承"><a href="#组合继承" class="headerlink" title="组合继承"></a>组合继承</h4><pre class="highlight"><span class="line"><span class="keyword">function</span> <span class="title function_">Parent</span> (name) &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">name</span> = name;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">colors</span> = [<span class="string">&#x27;red&#x27;</span>, <span class="string">&#x27;blue&#x27;</span>, <span class="string">&#x27;green&#x27;</span>];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title class_">Parent</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">getName</span> = <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">this</span>.<span class="property">name</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">Child</span> (name, age) &#123;</span><br><span class="line"></span><br><span class="line">    <span class="title class_">Parent</span>.<span class="title function_">call</span>(<span class="variable language_">this</span>, name);</span><br><span class="line">    </span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">age</span> = age;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title class_">Child</span>.<span class="property"><span class="keyword">prototype</span></span> = <span class="keyword">new</span> <span class="title class_">Parent</span>();</span><br><span class="line"><span class="title class_">Child</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">constructor</span> = <span class="title class_">Child</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> child1 = <span class="keyword">new</span> <span class="title class_">Child</span>(<span class="string">&#x27;kevin&#x27;</span>, <span class="string">&#x27;18&#x27;</span>);</span><br><span class="line"></span><br><span class="line">child1.<span class="property">colors</span>.<span class="title function_">push</span>(<span class="string">&#x27;black&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(child1.<span class="property">name</span>); <span class="comment">// kevin</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(child1.<span class="property">age</span>); <span class="comment">// 18</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(child1.<span class="property">colors</span>); <span class="comment">// [&quot;red&quot;, &quot;blue&quot;, &quot;green&quot;, &quot;black&quot;]</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> child2 = <span class="keyword">new</span> <span class="title class_">Child</span>(<span class="string">&#x27;daisy&#x27;</span>, <span class="string">&#x27;20&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(child2.<span class="property">name</span>); <span class="comment">// daisy</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(child2.<span class="property">age</span>); <span class="comment">// 20</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(child2.<span class="property">colors</span>); <span class="comment">// [&quot;red&quot;, &quot;blue&quot;, &quot;green&quot;]</span></span><br></pre>
+
+<p>优点：融合原型链继承和构造函数的优点，是 JavaScript 中最常用的继承模式。</p>
+<h4 id="原型式继承"><a href="#原型式继承" class="headerlink" title="原型式继承"></a>原型式继承</h4><pre class="highlight"><span class="line">function createObj(o) &#123;</span><br><span class="line">    function F()&#123;&#125;</span><br><span class="line">    F.prototype = o;</span><br><span class="line">    return new F();</span><br><span class="line">&#125;</span><br></pre>
+
+<p>就是 ES5 Object.create 的模拟实现，将传入的对象作为创建的对象的原型。<br><strong>缺点</strong>：包含引用类型的属性值始终都会共享相应的值，这点跟原型链继承一样。</p>
+<h4 id="寄生式继承"><a href="#寄生式继承" class="headerlink" title="寄生式继承"></a>寄生式继承</h4><p>创建一个仅用于<strong>封装继承过程</strong>的函数，该函数在内部以某种形式来做增强对象，最后返回对象。</p>
+<pre class="highlight"><span class="line"><span class="keyword">function</span> <span class="title function_">createObj</span> (o) &#123;</span><br><span class="line">    <span class="keyword">var</span> clone = <span class="title class_">Object</span>.<span class="title function_">create</span>(o);</span><br><span class="line">    clone.<span class="property">sayName</span> = <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;hi&#x27;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> clone;</span><br><span class="line">&#125;</span><br></pre>
+
+<p>缺点：跟借用构造函数模式一样，每次创建对象都会创建一遍方法。</p>
+<h4 id="寄生组合式继承"><a href="#寄生组合式继承" class="headerlink" title="寄生组合式继承"></a>寄生组合式继承</h4><pre class="highlight"><span class="line"><span class="keyword">function</span> <span class="title function_">object</span>(<span class="params">o</span>) &#123;</span><br><span class="line">    <span class="keyword">function</span> <span class="title function_">F</span>(<span class="params"></span>) &#123;&#125;</span><br><span class="line">    F.<span class="property"><span class="keyword">prototype</span></span> = o;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="title function_">F</span>();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">prototype</span>(<span class="params">child, parent</span>) &#123;</span><br><span class="line">    <span class="keyword">var</span> prototype = <span class="title function_">object</span>(parent.<span class="property"><span class="keyword">prototype</span></span>);</span><br><span class="line">    prototype.<span class="property">constructor</span> = child;</span><br><span class="line">    child.<span class="property"><span class="keyword">prototype</span></span> = prototype;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 当我们使用的时候：</span></span><br><span class="line"><span class="title function_">prototype</span>(<span class="title class_">Child</span>, <span class="title class_">Parent</span>);</span><br></pre>
+
+<h2 id="16-手写深拷贝和浅拷贝"><a href="#16-手写深拷贝和浅拷贝" class="headerlink" title="16.手写深拷贝和浅拷贝"></a>16.手写深拷贝和浅拷贝</h2><h4 id="浅拷贝"><a href="#浅拷贝" class="headerlink" title="浅拷贝"></a>浅拷贝</h4><pre class="highlight"><span class="line"><span class="keyword">var</span> shallowObj2 = &#123; ...obj1 &#125;</span><br><span class="line"><span class="comment">//方式2</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">shallowClone1</span>(<span class="params">o</span>) &#123;</span><br><span class="line">      <span class="keyword">let</span> obj = &#123;&#125;</span><br><span class="line"></span><br><span class="line">      <span class="keyword">for</span> (<span class="keyword">let</span> i <span class="keyword">in</span> o) &#123;</span><br><span class="line">        obj[i] = o[i]</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">return</span> obj</span><br><span class="line">    &#125;</span><br></pre>
+
+<h4 id="深拷贝"><a href="#深拷贝" class="headerlink" title="深拷贝"></a>深拷贝</h4><pre class="highlight"><span class="line"><span class="keyword">function</span> <span class="title function_">cloneJson</span>(<span class="params">o</span>) &#123;f</span><br><span class="line">      <span class="keyword">return</span> <span class="title class_">JSON</span>.<span class="title function_">parse</span>(<span class="title class_">JSON</span>.<span class="title function_">stringify</span>(o))</span><br><span class="line">    &#125;</span><br><span class="line"> <span class="comment">//方式2   </span></span><br><span class="line"> <span class="keyword">function</span> <span class="title function_">deepClone</span>(<span class="params">o, hash = <span class="keyword">new</span> <span class="built_in">Map</span>()</span>)&#123;</span><br><span class="line">    <span class="keyword">if</span>(!<span class="title function_">isObject</span>(o)) <span class="keyword">return</span> o</span><br><span class="line">    <span class="keyword">if</span>(hash.<span class="title function_">has</span>(o)) <span class="keyword">return</span> hash.<span class="title function_">get</span>(o)</span><br><span class="line">    <span class="keyword">let</span> obj = <span class="title class_">Array</span>.<span class="title function_">isArray</span>(o) ? [] : &#123;&#125;</span><br><span class="line">    </span><br><span class="line">    hash.<span class="title function_">set</span>(o, obj)</span><br><span class="line">    <span class="keyword">for</span>( <span class="keyword">let</span> i <span class="keyword">in</span> o)&#123;</span><br><span class="line">        <span class="keyword">if</span>(<span class="title function_">isObject</span>(o[i]))&#123;</span><br><span class="line">            obj[i] = <span class="title function_">deepClone</span>(o[i])</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            obj[i] = o[i]</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> obj</span><br><span class="line">&#125;</span><br></pre>
+
+<h2 id="17-浏览器和nodejs的事件循环有什么区别"><a href="#17-浏览器和nodejs的事件循环有什么区别" class="headerlink" title="17.浏览器和nodejs的事件循环有什么区别"></a>17.浏览器和nodejs的事件循环有什么区别</h2><h4 id="浏览器的事件循环"><a href="#浏览器的事件循环" class="headerlink" title="浏览器的事件循环"></a>浏览器的事件循环</h4><ul>
+<li><p>js是单线程的(因为JS里有可视DOM，如果是多线程，一个正在操作DOM，一个正在删除，导致JS不知道听谁的)</p>
+</li>
+<li><p>宏任务和微任务</p>
+<ul>
+<li>宏任务，setTimeout、setInterval、setImmediate</li>
+<li>微任务，promise.then()、async&#x2F;await</li>
+<li>微任务在下一轮DOM渲染（把元素绘制到页面上）前执行，宏任务在之后执行</li>
+<li><strong>Promise是宏任务（同步执行），promise.then&#x2F;catch&#x2F;finally是异步</strong></li>
+</ul>
+</li>
+<li><p>浏览器事件循环</p>
+<ul>
+<li>执行宏任务script</li>
+<li>进入script后，所有的同步任务主线程执行</li>
+<li>所有宏任务放入宏任务执行队列</li>
+<li>所有微任务放入微任务执行队列</li>
+<li>先清空微任务队列，</li>
+<li>再取一个宏任务，执行，再清空微任务队列</li>
+<li>依次循环</li>
+</ul>
+</li>
+</ul>
+<h4 id="nodejs异步"><a href="#nodejs异步" class="headerlink" title="nodejs异步"></a>nodejs异步</h4><p>nodejs也是单线程，也需要异步。异步任务分宏任务和微任务。但是，他的宏任务和微任务，分不同类型，有不同优先级</p>
+<ul>
+<li><p>宏任务类型和优先级(从上到下，上最高)</p>
+<ul>
+<li>Timers - setTimeout  setInterval</li>
+<li>I&#x2F;O callbacks - 处理网络、流、tcp的错误回调</li>
+<li>Idle, prepare - 闲置状态（nodejs内部使用）</li>
+<li>poll轮询 - 执行poll中的I&#x2F;O队列</li>
+<li>Check检查 - 存储setImmediate回调</li>
+<li>Close callbacks - 关闭回调，如socket.on(‘close’)</li>
+</ul>
+</li>
+<li><p>微任务类型和优先级</p>
+<ul>
+<li>promise.then(), async&#x2F;await, process.nextTick</li>
+<li>process.nextTick优先级最高</li>
+</ul>
+</li>
+<li><p>nodejs的event loop</p>
+<ul>
+<li>执行同步代码</li>
+<li>执行微任务</li>
+<li>按顺序执行6个类型的宏任务（每个结束都执行当前的宏任务）</li>
+</ul>
+</li>
+</ul>
+<h4 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h4><ul>
+<li>浏览器和nodejs的event loop流程基本相同</li>
+<li>nodejs宏任务和微任务分类型，有优先级</li>
+<li>推荐使用setImmediate代替process.nextTick</li>
+<li>Node 端，微任务 在事件循环的各个阶段之间执行<br>浏览器端，微任务 在事件循环的宏任务 执行完之后执行</li>
+</ul>
+<h2 id="18-变量提升"><a href="#18-变量提升" class="headerlink" title="18.变量提升"></a>18.变量提升</h2><ul>
+<li>对所有函数声明进行提升（除了函数表达式和箭头函数），引用类型的赋值<ul>
+<li>开辟堆空间</li>
+<li>存储内容</li>
+<li>将地址赋给变量</li>
+</ul>
+</li>
+<li>对变量进行提升，只声明，不赋值，值为<code>undefined</code></li>
+</ul>
+<h2 id="19-模块化"><a href="#19-模块化" class="headerlink" title="19. 模块化"></a>19. 模块化</h2><h4 id="为什么使用模块化"><a href="#为什么使用模块化" class="headerlink" title="为什么使用模块化"></a>为什么使用模块化</h4><ul>
+<li>防止命名冲突</li>
+<li>更好的分离，按需加载</li>
+<li>更好的复用性</li>
+<li>更高的维护性</li>
+</ul>
+<h4 id="模块包装格式"><a href="#模块包装格式" class="headerlink" title="模块包装格式"></a>模块包装格式</h4><ul>
+<li><p>Commonjs</p>
+<ul>
+<li>同步执行的，不适合前端</li>
+<li>使用方式         <code> module.exports = xxx         require(&#39;xxx&#39;)</code></li>
+</ul>
+</li>
+<li><p>AMD&#x2F;CMD区别</p>
+<ul>
+<li>AMD 是依赖前置（把依赖放在前面）、提前执行（即使没有用到某个模块，也会提前执行）</li>
+<li>CMD依赖就近、延时执行（用到的时候在声明依赖）</li>
+</ul>
+</li>
+<li><p>ESM</p>
+<ul>
+<li>使用 export 、 export default 来导出模块，使用 import 来引入模块</li>
+</ul>
+</li>
+</ul>
+<h2 id="20-箭头函数和普通函数区别"><a href="#20-箭头函数和普通函数区别" class="headerlink" title="20. 箭头函数和普通函数区别"></a>20. 箭头函数和普通函数区别</h2><ul>
+<li>箭头函数是普通函数的简写，但是它不具备很多普通函数的特性</li>
+<li>第一点，this指向问题，箭头函数的this指向它定义时所在的对象，而不是调用它的对象<br>不会进行函数提升</li>
+<li>没有arguments对象，不能使用arguments，如果要获取参数的话可以使用rest运算符</li>
+<li>没有yield属性，不能作为生成器Generator使用</li>
+<li>不能new</li>
+<li>没有自己的this，不能调用call和apply</li>
+<li>没有prototype，new关键字内部需要把新对象的_proto_指向函数的prototype</li>
+</ul>
+<h2 id="21-手写ajax"><a href="#21-手写ajax" class="headerlink" title="21. 手写ajax"></a>21. 手写ajax</h2><pre class="highlight"><span class="line"><span class="keyword">var</span> ajax = &#123;</span><br><span class="line">    <span class="attr">get</span>: <span class="keyword">function</span>(<span class="params">url, callback</span>)&#123;</span><br><span class="line">        <span class="keyword">let</span> xhr = <span class="title class_">XMLHttpRequest</span>()</span><br><span class="line">        xhr.<span class="title function_">open</span>(<span class="string">&#x27;get&#x27;</span>,url, <span class="literal">false</span>)</span><br><span class="line">        xhr.<span class="property">onreadystatechange</span> = <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">            <span class="keyword">if</span>(xhr.<span class="property">readyState</span> === <span class="number">4</span>)&#123;</span><br><span class="line">                <span class="keyword">if</span>(xhr.<span class="property">status</span> === <span class="number">200</span>)&#123;</span><br><span class="line">                    <span class="title function_">callback</span>(xhr.<span class="property">responseText</span>)</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        xhr.<span class="title function_">send</span>()</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">post</span>: <span class="keyword">function</span>(<span class="params">url, callback</span>)&#123;</span><br><span class="line">        <span class="keyword">let</span> xhr = <span class="title class_">XMLHttpRequest</span>()</span><br><span class="line">        xhr.<span class="title function_">open</span>(<span class="string">&#x27;post&#x27;</span>, url, <span class="literal">true</span>)</span><br><span class="line">        xhr.<span class="title function_">setRequestHeader</span>(<span class="string">&quot;Content-type&quot;</span>,<span class="string">&quot;x-www-form-urlencoded&quot;</span>)</span><br><span class="line">        xhr.<span class="property">onreadystatechange</span> = <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">            <span class="keyword">if</span>(xhr.<span class="property">readyState</span> === <span class="number">4</span>)&#123;</span><br><span class="line">                <span class="keyword">if</span>(xhr.<span class="property">status</span> === <span class="number">200</span>)&#123;</span><br><span class="line">                    <span class="title function_">callback</span>(xhr.<span class="property">responseText</span>)</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        xhr.<span class="title function_">setRequestHeader</span>(<span class="string">&quot;content-type&quot;</span>,<span class="string">&quot;application/x-www-urlencoded&quot;</span>)</span><br><span class="line">        xhr.<span class="title function_">send</span>()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre>
+
+
+
+<h2 id="22-手写防抖节流"><a href="#22-手写防抖节流" class="headerlink" title="22.手写防抖节流"></a>22.手写防抖节流</h2><ul>
+<li>防抖：n秒后在执行该事件，若在n秒内被重复触发，则重新计时</li>
+<li>节流：n秒内只运行一次，若在n秒内重复触发，只有一次生效</li>
+</ul>
+<pre class="highlight"><span class="line"><span class="comment">//防抖函数</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">debounce</span>(<span class="params">fn, delay</span>)&#123;</span><br><span class="line">    <span class="keyword">let</span> timeout</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">        <span class="keyword">if</span>(timeout) <span class="built_in">clearTimeout</span>(timeout)</span><br><span class="line">        timeout = <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">            <span class="title function_">fn</span>(<span class="variable language_">arguments</span>)</span><br><span class="line">        &#125;, delay)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//节流函数</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">throttle</span>(<span class="params">fn, time</span>)&#123;</span><br><span class="line">    <span class="keyword">let</span> pre = <span class="number">0</span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">        <span class="keyword">let</span> now = <span class="title class_">Date</span>.<span class="title function_">now</span>()</span><br><span class="line">        <span class="keyword">const</span> _this = <span class="variable language_">this</span></span><br><span class="line">        <span class="keyword">if</span>(now - pre &gt; time)&#123;</span><br><span class="line">            fn.<span class="title function_">apply</span>(_this, <span class="variable language_">arguments</span>)</span><br><span class="line">            pre = now</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre>
+
+
+
+<h2 id="23-函数柯里化原理"><a href="#23-函数柯里化原理" class="headerlink" title="23.函数柯里化原理"></a>23.函数柯里化原理</h2><p>柯里化是一种将使用多个参数的一个函数转换成一系列使用一个参数的函数的技术。</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/mqyqingfeng/Blog/issues/42">https://github.com/mqyqingfeng/Blog/issues/42</a></p>
+<h2 id="24-是否了解过requestIdleCallback-和requestAnimationFrame有什么区别"><a href="#24-是否了解过requestIdleCallback-和requestAnimationFrame有什么区别" class="headerlink" title="24.是否了解过requestIdleCallback? 和requestAnimationFrame有什么区别"></a>24.是否了解过requestIdleCallback? 和requestAnimationFrame有什么区别</h2><ul>
+<li>由react fiber引起的关注<ul>
+<li>组件树转换成链表，可分段渲染</li>
+<li>渲染时可以暂停，去执行其他高优任务，空闲时再继续渲染</li>
+<li>如何判断空闲？ – requestIdleCallback</li>
+</ul>
+</li>
+<li>requestAnimationFrame每次渲染完都会执行，高优<ul>
+<li>requestAnimationFrame请求数据帧可以用做动画执行</li>
+<li>可以自己决定什么时机调用该回调函数</li>
+<li>能保证每次频幕刷新的时候只被执行一次</li>
+<li>页面被隐藏或者最小化的时候暂停执行，返回窗口继续执行，有效节省CPU</li>
+</ul>
+</li>
+<li>requestIdleCallback空闲时才执行，低优</li>
+</ul>
+<h2 id="25-设计模式"><a href="#25-设计模式" class="headerlink" title="25.设计模式"></a>25.设计模式</h2><h2 id="26-fetch优缺点"><a href="#26-fetch优缺点" class="headerlink" title="26. fetch优缺点"></a>26. fetch优缺点</h2><ul>
+<li>fetch脱离了XHR，基于promise实现</li>
+<li>对某些错误不会reject，比如状态码400、500</li>
+<li>fetch不支持超时timeout处理</li>
+<li>fetch默认不携带cookie，需要手动配置</li>
+<li>fetch没有办法监测请求进度，而xhr可以</li>
+</ul>
+<h2 id="27-Dom性能优化"><a href="#27-Dom性能优化" class="headerlink" title="27.Dom性能优化"></a>27.Dom性能优化</h2><ul>
+<li>合并多次对css样式的修改，改为一次处理</li>
+<li>对DOM查询做缓存</li>
+<li>将频繁DOM操作改为一次性操作</li>
+<li>操作DOM前，先把DOM节点删除或隐藏，采用事件代理处理事件</li>
+</ul>
+<h4 id="浏览器的渲染机制"><a href="#浏览器的渲染机制" class="headerlink" title="浏览器的渲染机制"></a>浏览器的渲染机制</h4><ul>
+<li>解析HTML，构建DOM树</li>
+<li>解析CSS，构建CSS规则树</li>
+<li>合并DOM树和CSS规则树，生成render（渲染）树<ul>
+<li>从DOM树的根节点开始遍历每个可见节点</li>
+<li>对每个可见节点，找到css规则树中对应的规则，并应用他们</li>
+<li>根据每个可见节点以及其对应的样式，组合生成渲染树</li>
+</ul>
+</li>
+<li>布局render树（回流&#x2F;重排），负责个元素尺寸、位置的变化</li>
+<li>绘制render树（重绘），绘制页面像素信息</li>
+<li>浏览器将各层信息发送给GPU，GPU会将各层合成，显示在屏幕上</li>
+</ul>
+<h4 id="注意-1"><a href="#注意-1" class="headerlink" title="注意"></a>注意</h4><ul>
+<li>样式为display: none的节点会在DOM树中而不在渲染树中</li>
+<li>visibility和opacity隐藏的节点在DOM和渲染树中同时存在</li>
+</ul>
+<h4 id="什么是重排和重绘"><a href="#什么是重排和重绘" class="headerlink" title="什么是重排和重绘"></a>什么是重排和重绘</h4><ul>
+<li>重排：当DOM的变化影响了元素的几何信息，浏览器需要重新计算元素的几何属性，将其安放在界面中正确的位置，这个过程叫做重排。表现为重新布局，重新排列元素</li>
+<li>重绘：当一个元素的外观发生变化，但没有改变布局，重新把元素绘制出来的过程</li>
+<li>重排一定引起重绘，但重绘不一定引起重排</li>
+</ul>
+<h4 id="什么情况会发生重排"><a href="#什么情况会发生重排" class="headerlink" title="什么情况会发生重排"></a>什么情况会发生重排</h4><ul>
+<li>添加或删除可见DOM元素</li>
+<li>元素位置发生变化</li>
+<li>元素的尺寸发生变化（外&#x2F;内边距，边框大小、高度宽度）</li>
+<li>内容发生变化（例如：图片尺寸变化）</li>
+<li>页面渲染初始化（必须要首次重排）</li>
+<li>浏览器窗口resize尺寸变化</li>
+</ul>
+<h2 id="28-点击三百秒延迟"><a href="#28-点击三百秒延迟" class="headerlink" title="28.点击三百秒延迟"></a>28.点击三百秒延迟</h2><p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/69522350">如何解决移动端Click事件300ms延迟的问题？ - 知乎 (zhihu.com)</a></p>
+<p>FastClick 是 FT Labs 专门为解决移动端浏览器 300 毫秒点击延迟问题所开发的一个轻量级的库。FastClick的实现原理是在检测到touchend事件的时候，会通过DOM自定义事件立即出发模拟一个click事件，并把浏览器在300ms之后的click事件阻止掉。</p>
+<ul>
+<li>使用：npm install fastclick -S</li>
+</ul>
+<pre class="highlight"><span class="line">//main.js引入</span><br><span class="line">import fastClick from &#x27;fastclick&#x27;</span><br><span class="line">//初始化FastClick实例。在页面的DOM文档加载完成后</span><br><span class="line">fastClick.attach(document.body)</span><br></pre>
+
+<p>现在的浏览器基本上不需要fastclick了，只要定义了 viewport 就不会有，定义一个meta标签。</p>
+<h2 id="29-如何上传视频"><a href="#29-如何上传视频" class="headerlink" title="29. 如何上传视频"></a>29. 如何上传视频</h2><p>input type &#x3D; ‘file’去接收，用 window.URL.createObjectURL(file)把 file 文件转换为 URL（现场的&#x2F;前端转为 URL）</p>
+<p><strong>扩展</strong>：input的type可以取哪些值</p>
+<ul>
+<li>text</li>
+<li>image</li>
+<li>reset  &#x2F;submit <input type="reset/submit">定义重置&#x2F;提交按钮。重置按钮会清除表单中的所有数据。</li>
+<li>password</li>
+<li>radio单选按钮</li>
+<li>checkbox复选按钮</li>
+<li>button定义按钮，不能和js合作并且绑定事件</li>
+<li>hidden隐藏</li>
+<li>file上传文件</li>
+<li>h5新增<ul>
+<li>number  <input type="number" name="quantity" min="1" max="5">输入1-5之间数字</li>
+<li>date输入日期，会弹出日期选择器</li>
+<li>color，弹出颜色选择器</li>
+<li>range，包含一定范围的值的输入字段，可显示为滑动控件</li>
+<li>month输入年月</li>
+<li>week，选择周和年</li>
+<li>time，选择时间（无时区）</li>
+<li>datetime,日期和时间（有时区）</li>
+<li>datetime-local日期和时间（无时区）</li>
+<li>search用于搜索字段（搜索字段的表现类似常规文本字段）</li>
+<li>email</li>
+<li>tel</li>
+<li>url用于应该包含URL地址的输入字段。</li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    
+      <div 
+        class="post-note note-warning copyright" 
+        style="margin-top: 42px">
+        <p>
+          <span style="font-weight: bold;">作者：</span><a 
+            target="_blank" 
+            rel="nofollow noopener noreferrer" 
+            href="/about">
+            theme-kaze
+          </a>
+        </p>
+        <p>
+          <span style="font-weight: bold;">文章链接：</span><a 
+            target="_blank" 
+            rel="nofollow noopener noreferrer" 
+            href="http://example.com/2022/07/09/JavaScript/">
+            http://example.com/2022/07/09/JavaScript/
+          </a>
+        </p>
+        <p><span style="font-weight: bold;">版权声明：</span>本博客所有文章除特别声明外，均采用<a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0 协议</a>。转载请注明出处！</p>
+      </div>
+    
+  </div>
+</article>
+<div class="nav">
+  
+    <div class="nav-item-prev">
+      <a 
+        href="/2022/07/09/Algorithm/" 
+        class="nav-link">
+        <i class="iconfont icon-left nav-prev-icon"></i>
+        <div>
+          <div class="nav-label">Prev</div>
+          
+            <div class="nav-title">Algorithm </div>
+          
+        </div>
+      </a>
+    </div>
+  
+  
+    <div class="nav-item-next">
+      <a 
+        href="/2022/07/09/html-css/" 
+        class="nav-link">
+        <div>
+          <div class="nav-label">Next</div>
+          
+            <div class="nav-title">html-css </div>
+          
+        </div>
+        <i class="iconfont icon-right nav-next-icon"></i>
+      </a>
+    </div>
+  
+</div>
+
+<div 
+  class="card card-content toc-card" 
+  id="mobiletoc">
+  <div class="toc-header">
+  <i 
+    class="iconfont icon-menu" 
+    style="padding-right: 2px;">
+  </i>TOC
+</div>
+<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#JavaScript%E7%9F%A5%E8%AF%86%E7%82%B9"><span class="toc-text">JavaScript知识点</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E6%A3%80%E6%B5%8B%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="toc-text">1. 检测数据类型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%881%EF%BC%89typeof"><span class="toc-text">（1）typeof</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%882%EF%BC%89instanceof"><span class="toc-text">（2）instanceof</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%883%EF%BC%89constructor"><span class="toc-text">（3）constructor</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-Object-prototype-toString-call"><span class="toc-text">(4) Object.prototype.toString.call()</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-null-%E5%92%8C-undefined%E5%8C%BA%E5%88%AB"><span class="toc-text">2.null 和 undefined区别</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9B%B8%E5%90%8C%E7%82%B9"><span class="toc-text">相同点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8D%E5%90%8C%E7%82%B9"><span class="toc-text">不同点</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-x3D-x3D-%E5%92%8C-x3D-x3D-x3D-%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-text">3. &#x3D;&#x3D; 和&#x3D;&#x3D;&#x3D;的区别</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#x3D-x3D-%E8%BF%9B%E8%A1%8C%E6%AF%94%E8%BE%83%E6%97%B6%E4%BC%9A%E5%B0%86%E7%B1%BB%E5%9E%8B%E4%B8%8D%E5%90%8C%E7%9A%84%E8%BF%9B%E8%A1%8C%E9%9A%90%E5%BC%8F%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2%EF%BC%8C%E8%BD%AC%E6%8D%A2%E8%A7%84%E5%88%99%E5%A6%82%E4%B8%8B"><span class="toc-text">&#x3D;&#x3D;进行比较时会将类型不同的进行隐式类型转换，转换规则如下</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%89%B9%E6%AE%8A%E6%83%85%E5%86%B5"><span class="toc-text">特殊情况</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-typeof-NaN"><span class="toc-text">4.typeof(NaN)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-%E6%89%8B%E5%86%99call%E3%80%81apply%E3%80%81bind"><span class="toc-text">5.手写call、apply、bind</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-%E6%89%8B%E5%86%99new"><span class="toc-text">6. 手写new</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AD%97%E9%9D%A2%E9%87%8F%E5%88%9B%E5%BB%BA%E5%AF%B9%E8%B1%A1"><span class="toc-text">字面量创建对象</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#new%E5%88%9B%E5%BB%BA%E5%AF%B9%E8%B1%A1"><span class="toc-text">new创建对象</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-const-let-var%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-text">7. const let var的区别</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B3%A8%E6%84%8F"><span class="toc-text">注意</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-%E9%97%AD%E5%8C%85%E9%87%8C%E7%9A%84%E5%8F%98%E9%87%8F%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%8D%E4%BC%9A%E8%A2%AB%E5%9B%9E%E6%94%B6"><span class="toc-text">8.闭包里的变量为什么不会被回收</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6"><span class="toc-text">什么是垃圾回收</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E9%97%AD%E5%8C%85"><span class="toc-text">什么是闭包</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%97%AD%E5%8C%85%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%8D%E5%9B%9E%E6%94%B6"><span class="toc-text">闭包为什么不回收</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-JavaScript%E5%86%85%E5%AD%98%E6%B3%84%E9%9C%B2%E5%A6%82%E4%BD%95%E6%A3%80%E6%B5%8B%EF%BC%9F%E5%9C%BA%E6%99%AF%E6%9C%89%E5%93%AA%E4%BA%9B%EF%BC%9F"><span class="toc-text">9.JavaScript内存泄露如何检测？场景有哪些？</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%97%AD%E5%8C%85%E6%98%AF%E5%86%85%E5%AD%98%E6%B3%84%E9%9C%B2%E5%90%97"><span class="toc-text">闭包是内存泄露吗</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A3%80%E6%B5%8B%E5%86%85%E5%AD%98%E5%8F%98%E5%8C%96%E6%96%B9%E6%B3%95"><span class="toc-text">检测内存变化方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%86%85%E5%AD%98%E6%B3%84%E9%9C%B2%E5%9C%BA%E6%99%AF%EF%BC%88Vue%E4%B8%BA%E4%BE%8B%EF%BC%89"><span class="toc-text">内存泄露场景（Vue为例）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%87%8D%E7%82%B9"><span class="toc-text">重点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#set-map-weakMap-WeakSet-%E5%BC%B1%E5%BC%95%E7%94%A8"><span class="toc-text">set  map  weakMap   WeakSet  弱引用</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10-%E6%89%A7%E8%A1%8C%E4%B8%8A%E4%B8%8B%E6%96%87%E5%92%8C%E6%89%A7%E8%A1%8C%E6%A0%88"><span class="toc-text">10.执行上下文和执行栈</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%AF%E6%89%A7%E8%A1%8C%E4%BB%A3%E7%A0%81"><span class="toc-text">可执行代码</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%89%A7%E8%A1%8C%E4%B8%8A%E4%B8%8B%E6%96%87"><span class="toc-text">执行上下文</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%89%A7%E8%A1%8C%E4%B8%8A%E4%B8%8B%E6%96%87%E6%A0%88"><span class="toc-text">执行上下文栈</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#11-%E4%BD%9C%E7%94%A8%E5%9F%9F%E9%93%BE"><span class="toc-text">11.作用域链</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%9C%E7%94%A8%E5%9F%9F"><span class="toc-text">作用域</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%9C%E7%94%A8%E5%9F%9F%E9%93%BE"><span class="toc-text">作用域链</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#12-%E5%8F%98%E9%87%8F%E5%AF%B9%E8%B1%A1"><span class="toc-text">12 .变量对象</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%A8%E5%B1%80%E4%B8%8A%E4%B8%8B%E6%96%87"><span class="toc-text">全局上下文</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%87%BD%E6%95%B0%E4%B8%8A%E4%B8%8B%E6%96%87"><span class="toc-text">函数上下文</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#13-js%E7%9A%84%E9%9D%99%E6%80%81%E4%BD%9C%E7%94%A8%E5%9F%9F%E5%92%8C%E5%8A%A8%E6%80%81%E4%BD%9C%E7%94%A8%E5%9F%9F"><span class="toc-text">13.js的静态作用域和动态作用域</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#14-%E5%8E%9F%E5%9E%8B%E5%92%8C%E5%8E%9F%E5%9E%8B%E9%93%BE"><span class="toc-text">14.原型和原型链</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8E%9F%E5%9E%8B%E9%93%BE%E6%9F%A5%E6%89%BE"><span class="toc-text">原型链查找</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%87%8D%E5%86%99%E5%8E%9F%E5%9E%8B%E7%9A%84%E9%97%AE%E9%A2%98"><span class="toc-text">重写原型的问题</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Object-create"><span class="toc-text">Object.create</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#in%E6%93%8D%E4%BD%9C%E7%AC%A6"><span class="toc-text">in操作符</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#hasOwnProperty-NaN"><span class="toc-text">hasOwnProperty</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#for-%E2%80%A6-in"><span class="toc-text">for … in</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Object-keys-%E3%80%81Object-values-%E3%80%81Object-entries"><span class="toc-text">Object.keys() 、Object.values()、Object.entries( )</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AF%B4%E8%AF%B4-%E7%9A%84%E5%8E%9F%E5%9E%8B%E9%93%BE"><span class="toc-text">说说 [] 的原型链</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#15-%E7%BB%A7%E6%89%BF"><span class="toc-text">15.继承</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8E%9F%E5%9E%8B%E9%93%BE%E7%BB%A7%E6%89%BF"><span class="toc-text">原型链继承</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%80%9F%E7%94%A8%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0-%E7%BB%8F%E5%85%B8%E7%BB%A7%E6%89%BF"><span class="toc-text">借用构造函数(经典继承)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BB%84%E5%90%88%E7%BB%A7%E6%89%BF"><span class="toc-text">组合继承</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8E%9F%E5%9E%8B%E5%BC%8F%E7%BB%A7%E6%89%BF"><span class="toc-text">原型式继承</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AF%84%E7%94%9F%E5%BC%8F%E7%BB%A7%E6%89%BF"><span class="toc-text">寄生式继承</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AF%84%E7%94%9F%E7%BB%84%E5%90%88%E5%BC%8F%E7%BB%A7%E6%89%BF"><span class="toc-text">寄生组合式继承</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#16-%E6%89%8B%E5%86%99%E6%B7%B1%E6%8B%B7%E8%B4%9D%E5%92%8C%E6%B5%85%E6%8B%B7%E8%B4%9D"><span class="toc-text">16.手写深拷贝和浅拷贝</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B5%85%E6%8B%B7%E8%B4%9D"><span class="toc-text">浅拷贝</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B7%B1%E6%8B%B7%E8%B4%9D"><span class="toc-text">深拷贝</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#17-%E6%B5%8F%E8%A7%88%E5%99%A8%E5%92%8Cnodejs%E7%9A%84%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB"><span class="toc-text">17.浏览器和nodejs的事件循环有什么区别</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9A%84%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF"><span class="toc-text">浏览器的事件循环</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#nodejs%E5%BC%82%E6%AD%A5"><span class="toc-text">nodejs异步</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8C%BA%E5%88%AB"><span class="toc-text">区别</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#18-%E5%8F%98%E9%87%8F%E6%8F%90%E5%8D%87"><span class="toc-text">18.变量提升</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#19-%E6%A8%A1%E5%9D%97%E5%8C%96"><span class="toc-text">19. 模块化</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BD%BF%E7%94%A8%E6%A8%A1%E5%9D%97%E5%8C%96"><span class="toc-text">为什么使用模块化</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A8%A1%E5%9D%97%E5%8C%85%E8%A3%85%E6%A0%BC%E5%BC%8F"><span class="toc-text">模块包装格式</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#20-%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0%E5%92%8C%E6%99%AE%E9%80%9A%E5%87%BD%E6%95%B0%E5%8C%BA%E5%88%AB"><span class="toc-text">20. 箭头函数和普通函数区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#21-%E6%89%8B%E5%86%99ajax"><span class="toc-text">21. 手写ajax</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#22-%E6%89%8B%E5%86%99%E9%98%B2%E6%8A%96%E8%8A%82%E6%B5%81"><span class="toc-text">22.手写防抖节流</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#23-%E5%87%BD%E6%95%B0%E6%9F%AF%E9%87%8C%E5%8C%96%E5%8E%9F%E7%90%86"><span class="toc-text">23.函数柯里化原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#24-%E6%98%AF%E5%90%A6%E4%BA%86%E8%A7%A3%E8%BF%87requestIdleCallback-%E5%92%8CrequestAnimationFrame%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB"><span class="toc-text">24.是否了解过requestIdleCallback? 和requestAnimationFrame有什么区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#25-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F"><span class="toc-text">25.设计模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#26-fetch%E4%BC%98%E7%BC%BA%E7%82%B9"><span class="toc-text">26. fetch优缺点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#27-Dom%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96"><span class="toc-text">27.Dom性能优化</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9A%84%E6%B8%B2%E6%9F%93%E6%9C%BA%E5%88%B6"><span class="toc-text">浏览器的渲染机制</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B3%A8%E6%84%8F-1"><span class="toc-text">注意</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E9%87%8D%E6%8E%92%E5%92%8C%E9%87%8D%E7%BB%98"><span class="toc-text">什么是重排和重绘</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%83%85%E5%86%B5%E4%BC%9A%E5%8F%91%E7%94%9F%E9%87%8D%E6%8E%92"><span class="toc-text">什么情况会发生重排</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#28-%E7%82%B9%E5%87%BB%E4%B8%89%E7%99%BE%E7%A7%92%E5%BB%B6%E8%BF%9F"><span class="toc-text">28.点击三百秒延迟</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#29-%E5%A6%82%E4%BD%95%E4%B8%8A%E4%BC%A0%E8%A7%86%E9%A2%91"><span class="toc-text">29. 如何上传视频</span></a></li></ol></li></ol>
+</div>
+            </main>
+            <aside class="right-column">
+              <div class="sticky-widescreen">
+  
+  
+    <article class="card card-content toc-card">
+      <div class="toc-header">
+  <i 
+    class="iconfont icon-menu" 
+    style="padding-right: 2px;">
+  </i>TOC
+</div>
+<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#JavaScript%E7%9F%A5%E8%AF%86%E7%82%B9"><span class="toc-text">JavaScript知识点</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E6%A3%80%E6%B5%8B%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="toc-text">1. 检测数据类型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%881%EF%BC%89typeof"><span class="toc-text">（1）typeof</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%882%EF%BC%89instanceof"><span class="toc-text">（2）instanceof</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%883%EF%BC%89constructor"><span class="toc-text">（3）constructor</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-Object-prototype-toString-call"><span class="toc-text">(4) Object.prototype.toString.call()</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-null-%E5%92%8C-undefined%E5%8C%BA%E5%88%AB"><span class="toc-text">2.null 和 undefined区别</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9B%B8%E5%90%8C%E7%82%B9"><span class="toc-text">相同点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8D%E5%90%8C%E7%82%B9"><span class="toc-text">不同点</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-x3D-x3D-%E5%92%8C-x3D-x3D-x3D-%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-text">3. &#x3D;&#x3D; 和&#x3D;&#x3D;&#x3D;的区别</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#x3D-x3D-%E8%BF%9B%E8%A1%8C%E6%AF%94%E8%BE%83%E6%97%B6%E4%BC%9A%E5%B0%86%E7%B1%BB%E5%9E%8B%E4%B8%8D%E5%90%8C%E7%9A%84%E8%BF%9B%E8%A1%8C%E9%9A%90%E5%BC%8F%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2%EF%BC%8C%E8%BD%AC%E6%8D%A2%E8%A7%84%E5%88%99%E5%A6%82%E4%B8%8B"><span class="toc-text">&#x3D;&#x3D;进行比较时会将类型不同的进行隐式类型转换，转换规则如下</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%89%B9%E6%AE%8A%E6%83%85%E5%86%B5"><span class="toc-text">特殊情况</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-typeof-NaN"><span class="toc-text">4.typeof(NaN)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-%E6%89%8B%E5%86%99call%E3%80%81apply%E3%80%81bind"><span class="toc-text">5.手写call、apply、bind</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-%E6%89%8B%E5%86%99new"><span class="toc-text">6. 手写new</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AD%97%E9%9D%A2%E9%87%8F%E5%88%9B%E5%BB%BA%E5%AF%B9%E8%B1%A1"><span class="toc-text">字面量创建对象</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#new%E5%88%9B%E5%BB%BA%E5%AF%B9%E8%B1%A1"><span class="toc-text">new创建对象</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-const-let-var%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-text">7. const let var的区别</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B3%A8%E6%84%8F"><span class="toc-text">注意</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-%E9%97%AD%E5%8C%85%E9%87%8C%E7%9A%84%E5%8F%98%E9%87%8F%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%8D%E4%BC%9A%E8%A2%AB%E5%9B%9E%E6%94%B6"><span class="toc-text">8.闭包里的变量为什么不会被回收</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6"><span class="toc-text">什么是垃圾回收</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E9%97%AD%E5%8C%85"><span class="toc-text">什么是闭包</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%97%AD%E5%8C%85%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%8D%E5%9B%9E%E6%94%B6"><span class="toc-text">闭包为什么不回收</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-JavaScript%E5%86%85%E5%AD%98%E6%B3%84%E9%9C%B2%E5%A6%82%E4%BD%95%E6%A3%80%E6%B5%8B%EF%BC%9F%E5%9C%BA%E6%99%AF%E6%9C%89%E5%93%AA%E4%BA%9B%EF%BC%9F"><span class="toc-text">9.JavaScript内存泄露如何检测？场景有哪些？</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%97%AD%E5%8C%85%E6%98%AF%E5%86%85%E5%AD%98%E6%B3%84%E9%9C%B2%E5%90%97"><span class="toc-text">闭包是内存泄露吗</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A3%80%E6%B5%8B%E5%86%85%E5%AD%98%E5%8F%98%E5%8C%96%E6%96%B9%E6%B3%95"><span class="toc-text">检测内存变化方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%86%85%E5%AD%98%E6%B3%84%E9%9C%B2%E5%9C%BA%E6%99%AF%EF%BC%88Vue%E4%B8%BA%E4%BE%8B%EF%BC%89"><span class="toc-text">内存泄露场景（Vue为例）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%87%8D%E7%82%B9"><span class="toc-text">重点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#set-map-weakMap-WeakSet-%E5%BC%B1%E5%BC%95%E7%94%A8"><span class="toc-text">set  map  weakMap   WeakSet  弱引用</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10-%E6%89%A7%E8%A1%8C%E4%B8%8A%E4%B8%8B%E6%96%87%E5%92%8C%E6%89%A7%E8%A1%8C%E6%A0%88"><span class="toc-text">10.执行上下文和执行栈</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%AF%E6%89%A7%E8%A1%8C%E4%BB%A3%E7%A0%81"><span class="toc-text">可执行代码</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%89%A7%E8%A1%8C%E4%B8%8A%E4%B8%8B%E6%96%87"><span class="toc-text">执行上下文</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%89%A7%E8%A1%8C%E4%B8%8A%E4%B8%8B%E6%96%87%E6%A0%88"><span class="toc-text">执行上下文栈</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#11-%E4%BD%9C%E7%94%A8%E5%9F%9F%E9%93%BE"><span class="toc-text">11.作用域链</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%9C%E7%94%A8%E5%9F%9F"><span class="toc-text">作用域</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%9C%E7%94%A8%E5%9F%9F%E9%93%BE"><span class="toc-text">作用域链</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#12-%E5%8F%98%E9%87%8F%E5%AF%B9%E8%B1%A1"><span class="toc-text">12 .变量对象</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%A8%E5%B1%80%E4%B8%8A%E4%B8%8B%E6%96%87"><span class="toc-text">全局上下文</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%87%BD%E6%95%B0%E4%B8%8A%E4%B8%8B%E6%96%87"><span class="toc-text">函数上下文</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#13-js%E7%9A%84%E9%9D%99%E6%80%81%E4%BD%9C%E7%94%A8%E5%9F%9F%E5%92%8C%E5%8A%A8%E6%80%81%E4%BD%9C%E7%94%A8%E5%9F%9F"><span class="toc-text">13.js的静态作用域和动态作用域</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#14-%E5%8E%9F%E5%9E%8B%E5%92%8C%E5%8E%9F%E5%9E%8B%E9%93%BE"><span class="toc-text">14.原型和原型链</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8E%9F%E5%9E%8B%E9%93%BE%E6%9F%A5%E6%89%BE"><span class="toc-text">原型链查找</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%87%8D%E5%86%99%E5%8E%9F%E5%9E%8B%E7%9A%84%E9%97%AE%E9%A2%98"><span class="toc-text">重写原型的问题</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Object-create"><span class="toc-text">Object.create</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#in%E6%93%8D%E4%BD%9C%E7%AC%A6"><span class="toc-text">in操作符</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#hasOwnProperty-NaN"><span class="toc-text">hasOwnProperty</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#for-%E2%80%A6-in"><span class="toc-text">for … in</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Object-keys-%E3%80%81Object-values-%E3%80%81Object-entries"><span class="toc-text">Object.keys() 、Object.values()、Object.entries( )</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AF%B4%E8%AF%B4-%E7%9A%84%E5%8E%9F%E5%9E%8B%E9%93%BE"><span class="toc-text">说说 [] 的原型链</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#15-%E7%BB%A7%E6%89%BF"><span class="toc-text">15.继承</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8E%9F%E5%9E%8B%E9%93%BE%E7%BB%A7%E6%89%BF"><span class="toc-text">原型链继承</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%80%9F%E7%94%A8%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0-%E7%BB%8F%E5%85%B8%E7%BB%A7%E6%89%BF"><span class="toc-text">借用构造函数(经典继承)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BB%84%E5%90%88%E7%BB%A7%E6%89%BF"><span class="toc-text">组合继承</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8E%9F%E5%9E%8B%E5%BC%8F%E7%BB%A7%E6%89%BF"><span class="toc-text">原型式继承</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AF%84%E7%94%9F%E5%BC%8F%E7%BB%A7%E6%89%BF"><span class="toc-text">寄生式继承</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AF%84%E7%94%9F%E7%BB%84%E5%90%88%E5%BC%8F%E7%BB%A7%E6%89%BF"><span class="toc-text">寄生组合式继承</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#16-%E6%89%8B%E5%86%99%E6%B7%B1%E6%8B%B7%E8%B4%9D%E5%92%8C%E6%B5%85%E6%8B%B7%E8%B4%9D"><span class="toc-text">16.手写深拷贝和浅拷贝</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B5%85%E6%8B%B7%E8%B4%9D"><span class="toc-text">浅拷贝</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B7%B1%E6%8B%B7%E8%B4%9D"><span class="toc-text">深拷贝</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#17-%E6%B5%8F%E8%A7%88%E5%99%A8%E5%92%8Cnodejs%E7%9A%84%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB"><span class="toc-text">17.浏览器和nodejs的事件循环有什么区别</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9A%84%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF"><span class="toc-text">浏览器的事件循环</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#nodejs%E5%BC%82%E6%AD%A5"><span class="toc-text">nodejs异步</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8C%BA%E5%88%AB"><span class="toc-text">区别</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#18-%E5%8F%98%E9%87%8F%E6%8F%90%E5%8D%87"><span class="toc-text">18.变量提升</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#19-%E6%A8%A1%E5%9D%97%E5%8C%96"><span class="toc-text">19. 模块化</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BD%BF%E7%94%A8%E6%A8%A1%E5%9D%97%E5%8C%96"><span class="toc-text">为什么使用模块化</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A8%A1%E5%9D%97%E5%8C%85%E8%A3%85%E6%A0%BC%E5%BC%8F"><span class="toc-text">模块包装格式</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#20-%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0%E5%92%8C%E6%99%AE%E9%80%9A%E5%87%BD%E6%95%B0%E5%8C%BA%E5%88%AB"><span class="toc-text">20. 箭头函数和普通函数区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#21-%E6%89%8B%E5%86%99ajax"><span class="toc-text">21. 手写ajax</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#22-%E6%89%8B%E5%86%99%E9%98%B2%E6%8A%96%E8%8A%82%E6%B5%81"><span class="toc-text">22.手写防抖节流</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#23-%E5%87%BD%E6%95%B0%E6%9F%AF%E9%87%8C%E5%8C%96%E5%8E%9F%E7%90%86"><span class="toc-text">23.函数柯里化原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#24-%E6%98%AF%E5%90%A6%E4%BA%86%E8%A7%A3%E8%BF%87requestIdleCallback-%E5%92%8CrequestAnimationFrame%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB"><span class="toc-text">24.是否了解过requestIdleCallback? 和requestAnimationFrame有什么区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#25-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F"><span class="toc-text">25.设计模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#26-fetch%E4%BC%98%E7%BC%BA%E7%82%B9"><span class="toc-text">26. fetch优缺点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#27-Dom%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96"><span class="toc-text">27.Dom性能优化</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9A%84%E6%B8%B2%E6%9F%93%E6%9C%BA%E5%88%B6"><span class="toc-text">浏览器的渲染机制</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B3%A8%E6%84%8F-1"><span class="toc-text">注意</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E9%87%8D%E6%8E%92%E5%92%8C%E9%87%8D%E7%BB%98"><span class="toc-text">什么是重排和重绘</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%83%85%E5%86%B5%E4%BC%9A%E5%8F%91%E7%94%9F%E9%87%8D%E6%8E%92"><span class="toc-text">什么情况会发生重排</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#28-%E7%82%B9%E5%87%BB%E4%B8%89%E7%99%BE%E7%A7%92%E5%BB%B6%E8%BF%9F"><span class="toc-text">28.点击三百秒延迟</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#29-%E5%A6%82%E4%BD%95%E4%B8%8A%E4%BC%A0%E8%A7%86%E9%A2%91"><span class="toc-text">29. 如何上传视频</span></a></li></ol></li></ol>
+    </article>
+  
+  
+  <article class="card card-content">
+    <div class="recent-posts-card">
+  <div class="recent-posts-header">
+    <i 
+      class="iconfont icon-wenzhang_huaban" 
+      style="padding-right: 2px;">
+    </i>Recent Posts
+  </div>
+  <div class="recent-posts-list">
+    
+      <div class="recent-posts-item">
+        <div class="recent-posts-item-title">2022-07-09</div>
+        <a href="/2022/07/09/Algorithm/"><div class="recent-posts-item-content">Algorithm</div></a>
+      </div>
+    
+      <div class="recent-posts-item">
+        <div class="recent-posts-item-title">2022-07-09</div>
+        <a href="/2022/07/09/JavaScript/"><div class="recent-posts-item-content">JavaScript</div></a>
+      </div>
+    
+      <div class="recent-posts-item">
+        <div class="recent-posts-item-title">2022-07-09</div>
+        <a href="/2022/07/09/html-css/"><div class="recent-posts-item-content">html-css</div></a>
+      </div>
+    
+      <div class="recent-posts-item">
+        <div class="recent-posts-item-title">2022-07-09</div>
+        <a href="/2022/07/09/hello-world/"><div class="recent-posts-item-content">Hello World</div></a>
+      </div>
+    
+  </div>
+</div>
+  </article>
+  
+  
+</div>
+            </aside>
+          </div>
+        </div>
+      </div>
+    </div>
+     
+    <footer class="footer">
+  <div class="footer-container">
+    <div>
+      <div class="footer-dsc">
+        <span>
+          Copyright ©
+          
+            2020
+          
+          
+                - 
+                2022
+          
+        </span>
+        &nbsp;
+        <a 
+          href="/" 
+          class="footer-link">
+          Theme Kaze
+        </a>
+      </div>
+    </div>
+
+    
+      <div class="footer-dsc">
+        
+          Powered by
+          <a 
+            href="https://hexo.io/" 
+            class="footer-link" 
+            target="_blank" 
+            rel="nofollow noopener noreferrer">
+            &nbsp;Hexo
+          </a>
+        
+        
+          <span>&nbsp;|&nbsp;</span>
+        
+        
+          Theme -
+          <a 
+            href="https://github.com/theme-kaze" 
+            class="footer-link" 
+            target="_blank"
+            rel="nofollow noopener noreferrer">
+            &nbsp;Kaze
+          </a>
+        
+      </div>
+    
+    
+    
+    
+</footer>
+ 
+    
+  <a 
+    role="button" 
+    id="scrollbutton" 
+    class="basebutton" 
+    aria-label="回到顶部">
+    <i class="iconfont icon-arrowleft button-icon"></i>
+  </a>
+
+<a 
+  role="button" 
+  id="menubutton"
+  aria-label="menu button"
+  class="basebutton">
+  <i class="iconfont icon-menu button-icon"></i>
+</a>
+<a 
+  role="button" 
+  id="popbutton" 
+  class="basebutton" 
+  aria-label="控制中心">
+  <i class="iconfont icon-expand button-icon"></i>
+</a>
+<a 
+  role="button" 
+  id="darkbutton" 
+  class="basebutton darkwidget" 
+  aria-label="夜色模式">
+  <i class="iconfont icon-weather button-icon"></i>
+</a>
+<a 
+  role="button" 
+  id="searchbutton" 
+  class="basebutton searchwidget" 
+  aria-label="搜索">
+  <i class="iconfont icon-search button-icon"></i>
+</a> 
+     
+     
+     
+      <script>
+  var addImgLayout = function () {
+    var img = document.querySelectorAll('.post-content img')
+    var i
+    for (i = 0; i < img.length; i++) {
+      var wrapper = document.createElement('a')
+      wrapper.setAttribute('href', img[i].getAttribute('data-src'))
+      wrapper.setAttribute('aria-label', 'illustration')
+      wrapper.style.cssText =
+        'width: 100%; display: flex; justify-content: center;'
+      if (img[i].alt) wrapper.dataset.caption = img[i].alt
+      wrapper.dataset.nolink = true
+      img[i].before(wrapper)
+      wrapper.append(img[i])
+      var divWrap = document.createElement('div')
+      divWrap.classList.add('gallery')
+      wrapper.before(divWrap)
+      divWrap.append(wrapper)
+    }
+    baguetteBox.run('.gallery')
+  }
+</script>
+<script>
+  loadScript(
+    "/js/lib/lightbox/baguetteBox.min.js",
+    addImgLayout
+  )
+</script>
+ 
+     
+     
+    <script src="/js/main.js"></script> 
+     
+    
+      <script>
+        var addLazyload = function () {
+          var observer = lozad('.lozad', {
+            load: function (el) {
+              el.srcset = el.getAttribute('data-src')
+            },
+            loaded: function (el) {
+              el.classList.add('loaded')
+            },
+          })
+          observer.observe()
+        }
+      </script>
+      <script>
+        loadScript('/js/lib/lozad.min.js', addLazyload)
+      </script>
+    
+    <script src="//instant.page/5.1.0" type="module"
+      integrity="sha384-by67kQnR+pyfy8yWP4kPO12fHKRLHZPfEsiSXR8u2IKcTdxD805MGUXBzVPnkLHw"></script>
+    
+    
+  </body>
+</html>
