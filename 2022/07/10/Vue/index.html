@@ -17,7 +17,7 @@
     content="Phil">
   <link 
     rel="icon" 
-    href="/">
+    href="/../hexo-theme-Kaze/source/image/logo.png">
   <title>Vue</title>
   
     
@@ -45,7 +45,7 @@
         content="2022-07-10">
       <meta 
         property="og:article:modified_time" 
-        content="2022-07-10">
+        content="2022-07-11">
       <meta 
         property="og:article:author" 
         content="Nana">
@@ -53,7 +53,7 @@
         
           <meta 
             property="og:article:tag" 
-            content="-[面试题]">
+            content="面试题">
         
       
     
@@ -175,6 +175,13 @@
       <nav class="navbar">
   <div class="navbar-logo">
     <a class="navbar-logo-main" href="/">
+      
+        <img 
+          class="navbar-logo-img"
+          width="32"
+          height="32"
+          src="/../hexo-theme-Kaze/source/image/logo.png" 
+          alt="blog logo">
       
       <span class="navbar-logo-dsc">Phil</span>
       </a>
@@ -374,8 +381,8 @@
     
       <a 
         href="/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/" 
-        title="-[面试题]">
-        <div class="tags-list-item">-[面试题]</div>
+        title="面试题">
+        <div class="tags-list-item">面试题</div>
       </a>
     
   </div>
@@ -430,7 +437,7 @@
           <a 
             href="/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/" 
             class="post-meta-link">
-            -[面试题]
+            面试题
           </a>
         
       </div>
@@ -642,12 +649,15 @@
 <pre class="highlight"><span class="line">Vue.prototype.Event=new Vue();</span><br><span class="line">  	</span><br><span class="line">  </span><br><span class="line">Event.$emit(事件名,数据);</span><br><span class="line">Event.$on(事件名,data =&gt; &#123;&#125;);</span><br><span class="line">  </span><br></pre>
 </li>
 <li><p>vueX</p>
+<blockquote>
+<p>状态管理模式。每一个Vuex应用的核心就是store.”store”是一个容器，包含应用中的大部分状态</p>
+</blockquote>
 <ul>
-<li>state<br>存储数据的<br>获取数据最好推荐使用getters<br>硬要使用的话可以用MapState， 先引用，放在compute中…mapState([‘方法名’,’方法名’])</li>
-<li>getters<br>获取数据的<br>this.$store.getters.xxx<br>也可使用mapGetters 先引用，放在compute中，…mapGetters([‘方法名’,’方法名’])</li>
-<li>mutations<br>同步操作数据的<br>this.$store.commit(“方法名”,数据)<br>也可使用mapMutations ，使用方法和以上一样</li>
-<li>actions<br>异步操作数据的<br>this.$store.dispatch(“方法名”,数据)<br>也可使用mapActions ，使用方法和以上一样</li>
-<li>modules<br>板块，里面可以放多个vuex</li>
+<li>state：定义了应用状态的数据结构，可以在这里设置默认的初始状态</li>
+<li>getters：允许组件从Store中获取数据</li>
+<li>mutations：唯一更改store中状态的方法<br>this.$store.commit(“方法名”,数据)<br>也可使用mapMutations ，使用方法和以上一样</li>
+<li>actions：提交mutation，而不是直接变更状态，可以包含任意异步操作</li>
+<li>modules：允许将单一的store拆分成多个store且同时保存在单一的状态树中</li>
 </ul>
 </li>
 </ul>
@@ -662,7 +672,7 @@
 </ul>
 </li>
 <li>afterEach</li>
-<li>beforeRouterLeav</li>
+<li>beforeRouterLeave</li>
 </ul>
 <h2 id="23、事件修饰符"><a href="#23、事件修饰符" class="headerlink" title="23、事件修饰符"></a>23、事件修饰符</h2><p>@click.sync 语法</p>
 <p><comp :foo.sync="bar"></comp> 相当于 &lt;comp :foo&#x3D;”bar” @update:foo&#x3D;”val &#x3D;&gt; bar &#x3D; val”&gt;</comp><br>@click.native 父组件的原生事件需要加上 native，否则不生效</p>
